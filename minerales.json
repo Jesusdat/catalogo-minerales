@@ -1,0 +1,30 @@
+{
+    "Cuarzo": {
+        "formula": "SiO₂",
+        "dureza": "7",
+        "sistema": "Trigonal",
+        "descripcion": "Uno de los minerales más abundantes en la corteza terrestre.",
+        "imagen": "img/cuarzo.jpg"
+    },
+    "Pirita": {
+        "formula": "FeS₂",
+        "dureza": "6 - 6.5",
+        "sistema": "Cúbico",
+        "descripcion": "Famoso por su intenso brillo metálico dorado.",
+        "imagen": "img/pirita.jpg"
+    },
+    "Calcita": {
+        "formula": "CaCO3",
+        "dureza": "3",
+        "sistema": "Trigonal",
+        "descripcion": "Es muy común y tiene una amplia distribución por todo el planeta, se calcula que aproximadamente el 4 % en peso de la corteza terrestre es de calcita.",
+        "imagen": "img/calcita.jpg"
+    },
+    "magnesita": {
+        "formula": "MgCO₃",
+        "dureza": "3,5",
+        "sistema": "incoloro",
+        "descripcion": "No debe confundirse con la magnetita, que es un óxido de hierro fuertemente magnético",
+        "imagen": "img\\magnesita.jpg"
+    }
+}
