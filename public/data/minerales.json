@@ -1,0 +1,1241 @@
+[
+  {
+    "id": "cuarzo",
+    "nombre": "Cuarzo",
+    "formula": "SiO2",
+    "clase": "Silicatos",
+    "dureza_min": 7,
+    "dureza_max": 7,
+    "densidad": 2.65,
+    "sistema": "Trigonal",
+    "habito": "prisma-hexagonal",
+    "brillo": "Vítreo",
+    "color": "Incoloro, blanco, violeta (amatista), rosa, ahumado",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Ninguna",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#B8A4D6",
+    "usos": "Vidrio, electrónica (osciladores de cuarzo), joyería, abrasivos",
+    "descripcion": "Dióxido de silicio cristalizado y uno de los minerales más abundantes de la corteza terrestre. Sus variedades incluyen la amatista, el citrino, el cuarzo rosa y el ahumado; las amatistas de Las Vigas, Veracruz, son famosas por sus cristales largos y transparentes.",
+    "localidades": [
+      {
+        "nombre": "Las Vigas de Ramírez",
+        "region": "Veracruz, México",
+        "lat": 19.6176,
+        "lon": -97.0999
+      },
+      {
+        "nombre": "Hot Springs",
+        "region": "Arkansas, EE. UU.",
+        "lat": 34.5038,
+        "lon": -93.0552
+      },
+      {
+        "nombre": "Diamantina",
+        "region": "Minas Gerais, Brasil",
+        "lat": -18.2441,
+        "lon": -43.6006
+      }
+    ],
+    "imagen": {
+      "src": "img/cuarzo.webp",
+      "autor": "Repositorio original",
+      "licencia": "",
+      "licencia_url": "",
+      "fuente": ""
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Cuarzo_(mineral)"
+  },
+  {
+    "id": "pirita",
+    "nombre": "Pirita",
+    "formula": "FeS2",
+    "clase": "Sulfuros",
+    "dureza_min": 6,
+    "dureza_max": 6.5,
+    "densidad": 5.0,
+    "sistema": "Cúbico",
+    "habito": "cubo",
+    "brillo": "Metálico",
+    "color": "Amarillo latón",
+    "raya": "Negra verdosa",
+    "raya_grupo": "negra",
+    "exfoliacion": "Indistinta",
+    "fractura": "Concoidea a irregular",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#B59A45",
+    "usos": "Fuente de azufre para ácido sulfúrico, coleccionismo",
+    "descripcion": "Conocida como «el oro de los tontos» por su brillo dorado. Forma cubos casi perfectos con estrías en las caras; los cristales de Navajún, en La Rioja, España, son célebres por su geometría.",
+    "localidades": [
+      {
+        "nombre": "Navajún",
+        "region": "La Rioja, España",
+        "lat": 41.9646,
+        "lon": -2.0988
+      },
+      {
+        "nombre": "Huanzala",
+        "region": "Áncash, Perú",
+        "lat": -9.9112,
+        "lon": -76.9446
+      }
+    ],
+    "imagen": {
+      "src": "img/pirita.webp",
+      "autor": "Repositorio original",
+      "licencia": "",
+      "licencia_url": "",
+      "fuente": ""
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Pirita"
+  },
+  {
+    "id": "calcita",
+    "nombre": "Calcita",
+    "formula": "CaCO3",
+    "clase": "Carbonatos",
+    "dureza_min": 3,
+    "dureza_max": 3,
+    "densidad": 2.71,
+    "sistema": "Trigonal",
+    "habito": "romboedro",
+    "brillo": "Vítreo",
+    "color": "Incoloro, blanco, amarillo, naranja, miel",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta romboédrica en tres direcciones",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": true,
+    "fluorescencia": true,
+    "color_hex": "#E0A84A",
+    "usos": "Cemento, cal, construcción, óptica (espato de Islandia)",
+    "descripcion": "Carbonato de calcio y componente principal de la caliza y el mármol; define el grado 3 de la escala de Mohs. Se calcula que forma cerca del 4 % del peso de la corteza. Su variedad transparente, el espato de Islandia, muestra una doble refracción muy marcada.",
+    "localidades": [
+      {
+        "nombre": "Helgustaðir",
+        "region": "Islandia",
+        "lat": 65.0713,
+        "lon": -14.0124
+      },
+      {
+        "nombre": "Elmwood",
+        "region": "Tennessee, EE. UU.",
+        "lat": 36.2523,
+        "lon": -85.9517
+      }
+    ],
+    "imagen": {
+      "src": "img/calcita.webp",
+      "autor": "Repositorio original",
+      "licencia": "",
+      "licencia_url": "",
+      "fuente": ""
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Calcita"
+  },
+  {
+    "id": "magnesita",
+    "nombre": "Magnesita",
+    "formula": "MgCO3",
+    "clase": "Carbonatos",
+    "dureza_min": 3.5,
+    "dureza_max": 4.5,
+    "densidad": 3.0,
+    "sistema": "Trigonal",
+    "habito": "romboedro",
+    "brillo": "Vítreo",
+    "color": "Incoloro, blanco, gris, amarillento",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta romboédrica",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#D8CDB8",
+    "usos": "Refractarios, obtención de magnesio, fertilizantes",
+    "descripcion": "Carbonato de magnesio. No debe confundirse con la magnetita, que es un óxido de hierro fuertemente magnético. A diferencia de la calcita, solo hace efervescencia con ácido clorhídrico caliente.",
+    "localidades": [
+      {
+        "nombre": "Brumado",
+        "region": "Bahía, Brasil",
+        "lat": -14.2025,
+        "lon": -41.6701
+      },
+      {
+        "nombre": "Satka",
+        "region": "Cheliábinsk, Rusia",
+        "lat": 55.0456,
+        "lon": 58.9746
+      }
+    ],
+    "imagen": {
+      "src": "img/magnesita.webp",
+      "autor": "Repositorio original",
+      "licencia": "",
+      "licencia_url": "",
+      "fuente": ""
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Magnesita"
+  },
+  {
+    "id": "fluorita",
+    "nombre": "Fluorita",
+    "formula": "CaF2",
+    "clase": "Haluros",
+    "dureza_min": 4,
+    "dureza_max": 4,
+    "densidad": 3.18,
+    "sistema": "Cúbico",
+    "habito": "octaedro",
+    "brillo": "Vítreo",
+    "color": "Violeta, verde, azul, amarillo, incoloro",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta octaédrica",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": true,
+    "color_hex": "#3E9A73",
+    "usos": "Fundente en siderurgia, ácido fluorhídrico, lentes ópticas",
+    "descripcion": "Fluoruro de calcio y grado 4 de la escala de Mohs. El fenómeno de la fluorescencia toma su nombre de este mineral. Coahuila, en México, es una de las regiones productoras más importantes del mundo.",
+    "localidades": [
+      {
+        "nombre": "Múzquiz",
+        "region": "Coahuila, México",
+        "lat": 27.8781,
+        "lon": -101.5156
+      },
+      {
+        "nombre": "Weardale",
+        "region": "Durham, Inglaterra",
+        "lat": 54.7476,
+        "lon": -2.0068
+      }
+    ],
+    "imagen": {
+      "src": "img/fluorita.webp",
+      "autor": "CarlesMillan",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:3192M-fluorite1.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Fluorita"
+  },
+  {
+    "id": "galena",
+    "nombre": "Galena",
+    "formula": "PbS",
+    "clase": "Sulfuros",
+    "dureza_min": 2.5,
+    "dureza_max": 2.75,
+    "densidad": 7.6,
+    "sistema": "Cúbico",
+    "habito": "cubo",
+    "brillo": "Metálico",
+    "color": "Gris plomo",
+    "raya": "Gris plomo",
+    "raya_grupo": "gris",
+    "exfoliacion": "Perfecta cúbica",
+    "fractura": "Subconcoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#7C8591",
+    "usos": "Plomo para baterías, plata como subproducto",
+    "descripcion": "Principal mena de plomo y a menudo portadora de plata. Su densidad la hace sorprendentemente pesada en la mano, y se rompe en pequeños cubos por su exfoliación perfecta.",
+    "localidades": [
+      {
+        "nombre": "Naica",
+        "region": "Chihuahua, México",
+        "lat": 27.8562,
+        "lon": -105.4923
+      },
+      {
+        "nombre": "Huallanca",
+        "region": "Áncash, Perú",
+        "lat": -9.9112,
+        "lon": -76.9446
+      },
+      {
+        "nombre": "Joplin",
+        "region": "Misuri, EE. UU.",
+        "lat": 37.0842,
+        "lon": -94.5133
+      }
+    ],
+    "imagen": {
+      "src": "img/galena.webp",
+      "autor": "Ivar Leidus",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Galena_-_Huallanca,_Bologesi,_Ancash,_Peru.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Galena"
+  },
+  {
+    "id": "halita",
+    "nombre": "Halita",
+    "formula": "NaCl",
+    "clase": "Haluros",
+    "dureza_min": 2,
+    "dureza_max": 2.5,
+    "densidad": 2.17,
+    "sistema": "Cúbico",
+    "habito": "cubo",
+    "brillo": "Vítreo",
+    "color": "Incoloro, blanco, rosado",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta cúbica",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#E6E1D6",
+    "usos": "Sal de mesa, industria química (cloro y sosa), deshielo de carreteras",
+    "descripcion": "Es la sal común, cloruro de sodio. Se forma por evaporación de agua salada; las salinas de Guerrero Negro, en Baja California Sur, están entre las más grandes del mundo. Se reconoce por su sabor salado.",
+    "localidades": [
+      {
+        "nombre": "Guerrero Negro",
+        "region": "Baja California Sur, México",
+        "lat": 27.971,
+        "lon": -114.0364
+      },
+      {
+        "nombre": "Wieliczka",
+        "region": "Polonia",
+        "lat": 49.9824,
+        "lon": 20.0602
+      }
+    ],
+    "imagen": {
+      "src": "img/halita.webp",
+      "autor": "Lech Darski",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Halit_(NaCl)_-_Kopalnia_soli_Wieliczka,_Polska.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Halita"
+  },
+  {
+    "id": "yeso",
+    "nombre": "Yeso",
+    "formula": "CaSO4·2H2O",
+    "clase": "Sulfatos",
+    "dureza_min": 2,
+    "dureza_max": 2,
+    "densidad": 2.32,
+    "sistema": "Monoclínico",
+    "habito": "prisma-monoclinico",
+    "brillo": "Vítreo",
+    "color": "Incoloro, blanco, gris, miel",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta en una dirección",
+    "fractura": "Concoidea; fibrosa en algunas variedades",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#D7CEBC",
+    "usos": "Yeso de construcción, tablaroca, cemento",
+    "descripcion": "Sulfato de calcio hidratado y grado 2 de Mohs: la uña lo raya. En la Cueva de los Cristales de Naica, Chihuahua, la variedad selenita forma cristales de más de diez metros, entre los más grandes que se conocen.",
+    "localidades": [
+      {
+        "nombre": "Naica",
+        "region": "Chihuahua, México",
+        "lat": 27.8562,
+        "lon": -105.4923
+      },
+      {
+        "nombre": "Caresse",
+        "region": "Nueva Aquitania, Francia",
+        "lat": 43.4796,
+        "lon": -0.9985
+      }
+    ],
+    "imagen": {
+      "src": "img/yeso.webp",
+      "autor": "Didier Descouens",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Gypse_Caresse.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Yeso"
+  },
+  {
+    "id": "hematita",
+    "nombre": "Hematita",
+    "formula": "Fe2O3",
+    "clase": "Óxidos",
+    "dureza_min": 5.5,
+    "dureza_max": 6.5,
+    "densidad": 5.26,
+    "sistema": "Trigonal",
+    "habito": "tabular-hexagonal",
+    "brillo": "Metálico",
+    "color": "Gris acero a negro; rojo en variedades terrosas",
+    "raya": "Rojo pardo",
+    "raya_grupo": "roja",
+    "exfoliacion": "Ninguna",
+    "fractura": "Irregular a subconcoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#6E3A35",
+    "usos": "Hierro y acero, pigmentos (ocre rojo)",
+    "descripcion": "Principal mena de hierro. Aunque puede verse negra y metálica, su raya siempre es rojiza; de ahí su nombre, del griego haima, «sangre».",
+    "localidades": [
+      {
+        "nombre": "Itabira",
+        "region": "Minas Gerais, Brasil",
+        "lat": -19.6035,
+        "lon": -43.3008
+      },
+      {
+        "nombre": "Cerro de Mercado",
+        "region": "Durango, México",
+        "lat": 24.0461,
+        "lon": -104.6699
+      }
+    ],
+    "imagen": {
+      "src": "img/hematita.webp",
+      "autor": "Wikipedia Loves Art (Houston Museum of Natural Science)",
+      "licencia": "CC BY-SA 2.5",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/2.5",
+      "fuente": "https://commons.wikimedia.org/wiki/File:WLA_hmns_Hematite.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Hematita"
+  },
+  {
+    "id": "magnetita",
+    "nombre": "Magnetita",
+    "formula": "Fe3O4",
+    "clase": "Óxidos",
+    "dureza_min": 5.5,
+    "dureza_max": 6.5,
+    "densidad": 5.18,
+    "sistema": "Cúbico",
+    "habito": "octaedro",
+    "brillo": "Metálico",
+    "color": "Negro",
+    "raya": "Negra",
+    "raya_grupo": "negra",
+    "exfoliacion": "Ninguna",
+    "fractura": "Irregular",
+    "magnetico": true,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#2E3136",
+    "usos": "Mena de hierro, medios densos, estudios de paleomagnetismo",
+    "descripcion": "El mineral más magnético de la naturaleza: atrae imanes y algunas muestras, llamadas piedra imán, son imanes naturales. El Cerro de Mercado, junto a la ciudad de Durango, es un yacimiento de hierro histórico.",
+    "localidades": [
+      {
+        "nombre": "Kiruna",
+        "region": "Laponia, Suecia",
+        "lat": 67.8496,
+        "lon": 20.3062
+      },
+      {
+        "nombre": "Cerro de Mercado",
+        "region": "Durango, México",
+        "lat": 24.0461,
+        "lon": -104.6699
+      }
+    ],
+    "imagen": {
+      "src": "img/magnetita.webp",
+      "autor": "Robert M. Lavinsky",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Magnetite-118736.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Magnetita"
+  },
+  {
+    "id": "malaquita",
+    "nombre": "Malaquita",
+    "formula": "Cu2CO3(OH)2",
+    "clase": "Carbonatos",
+    "dureza_min": 3.5,
+    "dureza_max": 4,
+    "densidad": 3.9,
+    "sistema": "Monoclínico",
+    "habito": "prisma-monoclinico",
+    "brillo": "Sedoso",
+    "color": "Verde intenso con bandas",
+    "raya": "Verde claro",
+    "raya_grupo": "verde",
+    "exfoliacion": "Buena en una dirección",
+    "fractura": "Subconcoidea a irregular",
+    "magnetico": false,
+    "efervescencia": true,
+    "fluorescencia": false,
+    "color_hex": "#1E8A5A",
+    "usos": "Piedra ornamental, pigmento histórico, mena menor de cobre",
+    "descripcion": "Carbonato de cobre de verde intenso con bandas concéntricas. Se forma por alteración de minerales de cobre cerca de la superficie y suele acompañar a la azurita.",
+    "localidades": [
+      {
+        "nombre": "Kolwezi",
+        "region": "Katanga, R. D. del Congo",
+        "lat": -10.717,
+        "lon": 25.467
+      },
+      {
+        "nombre": "Ekaterimburgo",
+        "region": "Urales, Rusia",
+        "lat": 56.8382,
+        "lon": 60.6008
+      }
+    ],
+    "imagen": {
+      "src": "img/malaquita.webp",
+      "autor": "JJ Harrison",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Malachite,_Zaire.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Malaquita"
+  },
+  {
+    "id": "azurita",
+    "nombre": "Azurita",
+    "formula": "Cu3(CO3)2(OH)2",
+    "clase": "Carbonatos",
+    "dureza_min": 3.5,
+    "dureza_max": 4,
+    "densidad": 3.77,
+    "sistema": "Monoclínico",
+    "habito": "prisma-monoclinico",
+    "brillo": "Vítreo",
+    "color": "Azul profundo",
+    "raya": "Azul claro",
+    "raya_grupo": "azul",
+    "exfoliacion": "Buena",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": true,
+    "fluorescencia": false,
+    "color_hex": "#26428F",
+    "usos": "Pigmento histórico, coleccionismo, mena menor de cobre",
+    "descripcion": "Carbonato de cobre de azul profundo. Con el tiempo puede transformarse en malaquita, y fue uno de los pigmentos azules más usados en la pintura europea.",
+    "localidades": [
+      {
+        "nombre": "Bisbee",
+        "region": "Arizona, EE. UU.",
+        "lat": 31.4417,
+        "lon": -109.916
+      },
+      {
+        "nombre": "Cananea",
+        "region": "Sonora, México",
+        "lat": 30.9865,
+        "lon": -110.2889
+      },
+      {
+        "nombre": "La Sal",
+        "region": "Utah, EE. UU.",
+        "lat": 38.3018,
+        "lon": -109.2833
+      }
+    ],
+    "imagen": {
+      "src": "img/azurita.webp",
+      "autor": "Ivar Leidus",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Azurite_-_New_Nevada_Lode,_La_Sal,_Utah,_USA.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Azurita"
+  },
+  {
+    "id": "ortoclasa",
+    "nombre": "Ortoclasa",
+    "formula": "KAlSi3O8",
+    "clase": "Silicatos",
+    "dureza_min": 6,
+    "dureza_max": 6,
+    "densidad": 2.56,
+    "sistema": "Monoclínico",
+    "habito": "prisma-monoclinico",
+    "brillo": "Vítreo",
+    "color": "Blanco, rosado, crema",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta en dos direcciones a 90°",
+    "fractura": "Concoidea a irregular",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#C9A28C",
+    "usos": "Cerámica, porcelana, vidrio",
+    "descripcion": "Feldespato potásico y grado 6 de la escala de Mohs. Su nombre significa «fractura recta», por su exfoliación en ángulo recto. Las maclas de Carlsbad deben su nombre a Karlovy Vary, en Chequia.",
+    "localidades": [
+      {
+        "nombre": "Karlovy Vary",
+        "region": "Bohemia, Chequia",
+        "lat": 50.2306,
+        "lon": 12.8701
+      },
+      {
+        "nombre": "Minas Gerais",
+        "region": "Brasil",
+        "lat": -18.8574,
+        "lon": -41.9439
+      }
+    ],
+    "imagen": {
+      "src": "img/ortoclasa.webp",
+      "autor": "Didier Descouens",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:OrthoclaseBresil.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Ortoclasa"
+  },
+  {
+    "id": "talco",
+    "nombre": "Talco",
+    "formula": "Mg3Si4O10(OH)2",
+    "clase": "Silicatos",
+    "dureza_min": 1,
+    "dureza_max": 1,
+    "densidad": 2.75,
+    "sistema": "Monoclínico",
+    "habito": "tabular-hexagonal",
+    "brillo": "Nacarado",
+    "color": "Verde pálido, blanco, gris",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta en una dirección",
+    "fractura": "Irregular",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#9ACDB0",
+    "usos": "Talco cosmético, papel, cerámica, pinturas",
+    "descripcion": "El mineral más blando: define el grado 1 de la escala de Mohs. Se siente jabonoso al tacto y se raya con facilidad con la uña.",
+    "localidades": [
+      {
+        "nombre": "Johnson",
+        "region": "Vermont, EE. UU.",
+        "lat": 44.6354,
+        "lon": -72.6793
+      },
+      {
+        "nombre": "Luzenac",
+        "region": "Occitania, Francia",
+        "lat": 42.7634,
+        "lon": 1.7634
+      }
+    ],
+    "imagen": {
+      "src": "img/talco.webp",
+      "autor": "Robert M. Lavinsky",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Talc-177589.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Talco"
+  },
+  {
+    "id": "corindon",
+    "nombre": "Corindón",
+    "formula": "Al2O3",
+    "clase": "Óxidos",
+    "dureza_min": 9,
+    "dureza_max": 9,
+    "densidad": 4.02,
+    "sistema": "Trigonal",
+    "habito": "bipiramide-hexagonal",
+    "brillo": "Adamantino",
+    "color": "Rojo (rubí), azul y otros colores (zafiro), gris",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Ninguna (presenta partición)",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": true,
+    "color_hex": "#B04A5B",
+    "usos": "Gemas, abrasivos (esmeril)",
+    "descripcion": "Óxido de aluminio y grado 9 de Mohs. Sus variedades gema son el rubí, rojo por trazas de cromo, y el zafiro, que incluye todos los demás colores.",
+    "localidades": [
+      {
+        "nombre": "Ratnapura",
+        "region": "Sri Lanka",
+        "lat": 6.5796,
+        "lon": 80.5882
+      },
+      {
+        "nombre": "Mogok",
+        "region": "Myanmar",
+        "lat": 22.9228,
+        "lon": 96.5055
+      }
+    ],
+    "imagen": {
+      "src": "img/corindon.webp",
+      "autor": "Ra'ike",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Several_corundum_crystals.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Corindón"
+  },
+  {
+    "id": "topacio",
+    "nombre": "Topacio",
+    "formula": "Al2SiO4(F,OH)2",
+    "clase": "Silicatos",
+    "dureza_min": 8,
+    "dureza_max": 8,
+    "densidad": 3.53,
+    "sistema": "Ortorrómbico",
+    "habito": "prisma-ortorrombico",
+    "brillo": "Vítreo",
+    "color": "Incoloro, amarillo, dorado, azul, rosado",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta basal",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#D7A15B",
+    "usos": "Gemología, coleccionismo",
+    "descripcion": "Grado 8 de la escala de Mohs. El «topacio imperial» de Ouro Preto, Brasil, tiene tonos dorados a rosados; en San Luis Potosí aparece en cavidades de rocas volcánicas.",
+    "localidades": [
+      {
+        "nombre": "Ouro Preto",
+        "region": "Minas Gerais, Brasil",
+        "lat": -20.3857,
+        "lon": -43.5036
+      },
+      {
+        "nombre": "San Luis Potosí",
+        "region": "México",
+        "lat": 22.1516,
+        "lon": -100.9764
+      }
+    ],
+    "imagen": {
+      "src": "img/topacio.webp",
+      "autor": "Parent Géry",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Topaze,_quartz_fum%C3%A9_1.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Topacio"
+  },
+  {
+    "id": "diamante",
+    "nombre": "Diamante",
+    "formula": "C",
+    "clase": "Elementos nativos",
+    "dureza_min": 10,
+    "dureza_max": 10,
+    "densidad": 3.52,
+    "sistema": "Cúbico",
+    "habito": "octaedro",
+    "brillo": "Adamantino",
+    "color": "Incoloro, amarillo, marrón; raramente azul o rosa",
+    "raya": "Ninguna (es más duro que la placa)",
+    "raya_grupo": "ninguna",
+    "exfoliacion": "Perfecta octaédrica",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": true,
+    "color_hex": "#D9E3E8",
+    "usos": "Gemas, herramientas de corte y perforación, abrasivos",
+    "descripcion": "Carbono puro con estructura cúbica: el material natural más duro conocido y grado 10 de Mohs. Se forma a más de 150 km de profundidad y llega a la superficie en chimeneas de kimberlita, como las de Kimberley, Sudáfrica.",
+    "localidades": [
+      {
+        "nombre": "Kimberley",
+        "region": "Cabo Septentrional, Sudáfrica",
+        "lat": -28.7383,
+        "lon": 24.7642
+      },
+      {
+        "nombre": "Mirni",
+        "region": "Yakutia, Rusia",
+        "lat": 62.541,
+        "lon": 113.9785
+      }
+    ],
+    "imagen": {
+      "src": "img/diamante.webp",
+      "autor": "DGPC/ADF Luísa Oliveira",
+      "licencia": "CC0",
+      "licencia_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Rough_Diamond.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Diamante"
+  },
+  {
+    "id": "apatito",
+    "nombre": "Apatito",
+    "formula": "Ca5(PO4)3(F,Cl,OH)",
+    "clase": "Fosfatos",
+    "dureza_min": 5,
+    "dureza_max": 5,
+    "densidad": 3.19,
+    "sistema": "Hexagonal",
+    "habito": "prisma-hexagonal-plano",
+    "brillo": "Vítreo",
+    "color": "Amarillo, verde, violeta, azul",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Imperfecta",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": true,
+    "color_hex": "#C8B347",
+    "usos": "Fertilizantes fosfatados, ácido fosfórico",
+    "descripcion": "Grado 5 de la escala de Mohs y principal fuente de fósforo. Es también el mineral de huesos y dientes (hidroxiapatita). Los cristales amarillos del Cerro de Mercado, Durango, son clásicos entre coleccionistas.",
+    "localidades": [
+      {
+        "nombre": "Cerro de Mercado",
+        "region": "Durango, México",
+        "lat": 24.0461,
+        "lon": -104.6699
+      },
+      {
+        "nombre": "Panasqueira",
+        "region": "Portugal",
+        "lat": 40.1692,
+        "lon": -7.7568
+      }
+    ],
+    "imagen": {
+      "src": "img/apatito.webp",
+      "autor": "Thomas Spann",
+      "licencia": "CC BY 2.0",
+      "licencia_url": "https://creativecommons.org/licenses/by/2.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Apatite_on_Siderite_(13156440584).jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Apatito"
+  },
+  {
+    "id": "esfalerita",
+    "nombre": "Esfalerita",
+    "formula": "ZnS",
+    "clase": "Sulfuros",
+    "dureza_min": 3.5,
+    "dureza_max": 4,
+    "densidad": 4.05,
+    "sistema": "Cúbico",
+    "habito": "tetraedro",
+    "brillo": "Resinoso",
+    "color": "Marrón, negro, amarillo, rojo",
+    "raya": "Blanca a marrón claro",
+    "raya_grupo": "marron",
+    "exfoliacion": "Perfecta dodecaédrica",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#5A4535",
+    "usos": "Principal mena de zinc, fuente de germanio e indio",
+    "descripcion": "Principal mena de zinc. Su nombre viene del griego sphaleros, «engañoso», porque se confundía con la galena. Los cristales transparentes de los Picos de Europa, España, son de los más apreciados.",
+    "localidades": [
+      {
+        "nombre": "Santa Eulalia",
+        "region": "Chihuahua, México",
+        "lat": 28.5795,
+        "lon": -105.8336
+      },
+      {
+        "nombre": "Creede",
+        "region": "Colorado, EE. UU.",
+        "lat": 37.8483,
+        "lon": -106.9255
+      },
+      {
+        "nombre": "Picos de Europa",
+        "region": "Cantabria, España",
+        "lat": 43.1508,
+        "lon": -4.6939
+      }
+    ],
+    "imagen": {
+      "src": "img/esfalerita.webp",
+      "autor": "Ivar Leidus",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Sphalerite_-_Creede,_Mineral_County,_Colorado,_USA.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Esfalerita"
+  },
+  {
+    "id": "calcopirita",
+    "nombre": "Calcopirita",
+    "formula": "CuFeS2",
+    "clase": "Sulfuros",
+    "dureza_min": 3.5,
+    "dureza_max": 4,
+    "densidad": 4.2,
+    "sistema": "Tetragonal",
+    "habito": "tetraedro",
+    "brillo": "Metálico",
+    "color": "Amarillo latón, a veces con irisaciones",
+    "raya": "Negra verdosa",
+    "raya_grupo": "negra",
+    "exfoliacion": "Indistinta",
+    "fractura": "Irregular",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#B5973B",
+    "usos": "Mena de cobre, subproductos de oro y plata",
+    "descripcion": "La mena de cobre más importante del mundo. Se distingue de la pirita por ser más blanda y de un amarillo más intenso. Es clave en los grandes yacimientos de Cananea, Sonora, y Chuquicamata, Chile.",
+    "localidades": [
+      {
+        "nombre": "Cananea",
+        "region": "Sonora, México",
+        "lat": 30.9865,
+        "lon": -110.2889
+      },
+      {
+        "nombre": "Chuquicamata",
+        "region": "Antofagasta, Chile",
+        "lat": -22.4624,
+        "lon": -68.9272
+      }
+    ],
+    "imagen": {
+      "src": "img/calcopirita.webp",
+      "autor": "Robert M. Lavinsky",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Chalcopyrite-199453.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Calcopirita"
+  },
+  {
+    "id": "azufre",
+    "nombre": "Azufre",
+    "formula": "S",
+    "clase": "Elementos nativos",
+    "dureza_min": 1.5,
+    "dureza_max": 2.5,
+    "densidad": 2.07,
+    "sistema": "Ortorrómbico",
+    "habito": "bipiramide",
+    "brillo": "Resinoso",
+    "color": "Amarillo intenso",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Imperfecta",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#E1C838",
+    "usos": "Ácido sulfúrico, fertilizantes, vulcanización del caucho",
+    "descripcion": "Elemento nativo de amarillo intenso, frecuente en zonas volcánicas y yacimientos sedimentarios como los de Sicilia. Es tan mal conductor del calor que un cristal puede agrietarse con el calor de la mano.",
+    "localidades": [
+      {
+        "nombre": "Agrigento",
+        "region": "Sicilia, Italia",
+        "lat": 37.3123,
+        "lon": 13.5747
+      },
+      {
+        "nombre": "San Pablo de Napa",
+        "region": "Potosí, Bolivia",
+        "lat": -20.5319,
+        "lon": -68.5787
+      }
+    ],
+    "imagen": {
+      "src": "img/azufre.webp",
+      "autor": "Ivar Leidus",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Sulfur_-_El_Desierto_mine,_San_Pablo_de_Napa,_Daniel_Campos_Province,_Potos%C3%AD,_Bolivia.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Azufre"
+  },
+  {
+    "id": "barita",
+    "nombre": "Barita",
+    "formula": "BaSO4",
+    "clase": "Sulfatos",
+    "dureza_min": 3,
+    "dureza_max": 3.5,
+    "densidad": 4.48,
+    "sistema": "Ortorrómbico",
+    "habito": "tabular-ortorrombico",
+    "brillo": "Vítreo",
+    "color": "Incoloro, blanco, miel, azulado",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta en dos direcciones",
+    "fractura": "Irregular",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#C6B8A4",
+    "usos": "Lodos de perforación petrolera, contraste en radiología, pinturas",
+    "descripcion": "Sulfato de bario, notable por su densidad elevada para ser un mineral no metálico: se siente pesado en la mano. Se usa en los lodos de perforación petrolera y como medio de contraste en radiología.",
+    "localidades": [
+      {
+        "nombre": "Frizington",
+        "region": "Cumbria, Inglaterra",
+        "lat": 54.5394,
+        "lon": -3.4938
+      },
+      {
+        "nombre": "Huánuco",
+        "region": "Perú",
+        "lat": -9.6375,
+        "lon": -76.9438
+      }
+    ],
+    "imagen": {
+      "src": "img/barita.webp",
+      "autor": "Ivar Leidus",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Barite_-_Cerro_Warihuyn,_Miraflores,_Huamalies,_Huanuco,_Peru.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Barita"
+  },
+  {
+    "id": "celestina",
+    "nombre": "Celestina",
+    "formula": "SrSO4",
+    "clase": "Sulfatos",
+    "dureza_min": 3,
+    "dureza_max": 3.5,
+    "densidad": 3.96,
+    "sistema": "Ortorrómbico",
+    "habito": "prisma-ortorrombico",
+    "brillo": "Vítreo",
+    "color": "Azul celeste, incoloro, blanco",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Perfecta basal",
+    "fractura": "Irregular",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#9DC2D6",
+    "usos": "Fuente de estroncio (fuegos artificiales rojos, imanes cerámicos)",
+    "descripcion": "Debe su nombre al azul celeste de muchos de sus cristales. Es la principal fuente de estroncio, el elemento que da el color rojo a los fuegos artificiales. Las geodas de Madagascar son famosas por su tamaño.",
+    "localidades": [
+      {
+        "nombre": "Katsepy",
+        "region": "Boeny, Madagascar",
+        "lat": -15.7651,
+        "lon": 46.2428
+      },
+      {
+        "nombre": "Agrigento",
+        "region": "Sicilia, Italia",
+        "lat": 37.3123,
+        "lon": 13.5747
+      }
+    ],
+    "imagen": {
+      "src": "img/celestina.webp",
+      "autor": "Ivar Leidus",
+      "licencia": "CC BY-SA 4.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Celestine_-_Sakoany_deposit,_Katsepy,_Mitsinjo,_Boeny,_Madagascar.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Celestina"
+  },
+  {
+    "id": "olivino",
+    "nombre": "Olivino",
+    "formula": "(Mg,Fe)2SiO4",
+    "clase": "Silicatos",
+    "dureza_min": 6.5,
+    "dureza_max": 7,
+    "densidad": 3.3,
+    "sistema": "Ortorrómbico",
+    "habito": "prisma-ortorrombico",
+    "brillo": "Vítreo",
+    "color": "Verde oliva a amarillo verdoso",
+    "raya": "Blanca",
+    "raya_grupo": "blanca",
+    "exfoliacion": "Imperfecta",
+    "fractura": "Concoidea",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#8CB23A",
+    "usos": "Gema (peridoto), arenas de fundición, refractarios",
+    "descripcion": "Silicato de magnesio y hierro, muy abundante en el manto terrestre. Su variedad gema es el peridoto; San Carlos, Arizona, y la isla de Zabargad, en el mar Rojo, son localidades clásicas.",
+    "localidades": [
+      {
+        "nombre": "San Carlos",
+        "region": "Arizona, EE. UU.",
+        "lat": 33.3507,
+        "lon": -110.467
+      },
+      {
+        "nombre": "Zabargad",
+        "region": "Mar Rojo, Egipto",
+        "lat": 23.6111,
+        "lon": 36.1977
+      }
+    ],
+    "imagen": {
+      "src": "img/olivino.webp",
+      "autor": "Robert M. Lavinsky",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Olivine-gem7-10a.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Olivino"
+  },
+  {
+    "id": "grafito",
+    "nombre": "Grafito",
+    "formula": "C",
+    "clase": "Elementos nativos",
+    "dureza_min": 1,
+    "dureza_max": 2,
+    "densidad": 2.16,
+    "sistema": "Hexagonal",
+    "habito": "tabular-hexagonal",
+    "brillo": "Submetálico",
+    "color": "Gris oscuro a negro",
+    "raya": "Negra",
+    "raya_grupo": "negra",
+    "exfoliacion": "Perfecta basal",
+    "fractura": "Irregular",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#3A3C40",
+    "usos": "Lápices, lubricantes, electrodos, baterías de ion-litio",
+    "descripcion": "Mismo elemento que el diamante, pero con otra estructura: capas de carbono que se deslizan entre sí, por eso mancha y es tan blando. El grafito de Borrowdale, Inglaterra, dio origen a la industria del lápiz.",
+    "localidades": [
+      {
+        "nombre": "Borrowdale",
+        "region": "Cumbria, Inglaterra",
+        "lat": 54.5163,
+        "lon": -3.147
+      },
+      {
+        "nombre": "Moradillas",
+        "region": "Sonora, México (cerca de Hermosillo)",
+        "lat": 29.0948,
+        "lon": -110.9692
+      }
+    ],
+    "imagen": {
+      "src": "img/grafito.webp",
+      "autor": "Robert M. Lavinsky",
+      "licencia": "CC BY-SA 3.0",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Graphite-233436.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Grafito"
+  },
+  {
+    "id": "plata",
+    "nombre": "Plata",
+    "formula": "Ag",
+    "clase": "Elementos nativos",
+    "dureza_min": 2.5,
+    "dureza_max": 3,
+    "densidad": 10.5,
+    "sistema": "Cúbico",
+    "habito": "cubo",
+    "brillo": "Metálico",
+    "color": "Blanco plateado; se ennegrece con el tiempo",
+    "raya": "Blanca plateada",
+    "raya_grupo": "gris",
+    "exfoliacion": "Ninguna",
+    "fractura": "Ganchuda",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#C5C9CD",
+    "usos": "Joyería, electrónica, monedas, energía solar",
+    "descripcion": "Metal nativo, maleable y el mejor conductor eléctrico. México es el mayor productor de plata del mundo, y Batopilas, Chihuahua, fue famosa por sus masas de plata nativa.",
+    "localidades": [
+      {
+        "nombre": "Batopilas",
+        "region": "Chihuahua, México",
+        "lat": 26.9245,
+        "lon": -107.6673
+      },
+      {
+        "nombre": "Kongsberg",
+        "region": "Noruega",
+        "lat": 59.5946,
+        "lon": 9.6709
+      }
+    ],
+    "imagen": {
+      "src": "img/plata.webp",
+      "autor": "Alchemist-hp",
+      "licencia": "CC BY-SA 3.0 de",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Silver_crystal.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Plata"
+  },
+  {
+    "id": "oro",
+    "nombre": "Oro",
+    "formula": "Au",
+    "clase": "Elementos nativos",
+    "dureza_min": 2.5,
+    "dureza_max": 3,
+    "densidad": 19.3,
+    "sistema": "Cúbico",
+    "habito": "octaedro",
+    "brillo": "Metálico",
+    "color": "Amarillo dorado",
+    "raya": "Amarilla dorada",
+    "raya_grupo": "amarilla",
+    "exfoliacion": "Ninguna",
+    "fractura": "Ganchuda",
+    "magnetico": false,
+    "efervescencia": false,
+    "fluorescencia": false,
+    "color_hex": "#D3A33A",
+    "usos": "Joyería, reservas monetarias, electrónica, odontología",
+    "descripcion": "Metal nativo, maleable e inalterable. La cuenca de Witwatersrand, en Sudáfrica, es la mayor fuente de oro de la historia, y Guanajuato fue uno de los grandes distritos mineros de la Nueva España.",
+    "localidades": [
+      {
+        "nombre": "Witwatersrand",
+        "region": "Gauteng, Sudáfrica",
+        "lat": -26.205,
+        "lon": 28.0497
+      },
+      {
+        "nombre": "Guanajuato",
+        "region": "México",
+        "lat": 21.0159,
+        "lon": -101.2528
+      }
+    ],
+    "imagen": {
+      "src": "img/oro.webp",
+      "autor": "Alchemist-hp",
+      "licencia": "CC BY-SA 3.0 de",
+      "licencia_url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Gold-crystals.jpg"
+    },
+    "wikipedia": "https://es.wikipedia.org/wiki/Oro"
+  }
+]
