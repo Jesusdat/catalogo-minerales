@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Gabinete Mineral{% endblock %}
+{% block branding %}<div id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:"Gabinete Mineral" }}</a></div>
+{% if user.is_anonymous %}{% include "admin/color_theme_toggle.html" %}{% endif %}{% endblock %}
+{% block extrastyle %}{{ block.super }}
+<style>
+  :root, html[data-theme="light"] {
+    --primary: #1f5d4c; --secondary: #17473a; --accent: #e9d8a6;
+    --primary-fg: #fff; --header-color: #f3efe6; --header-link-color: #fff;
+    --breadcrumbs-bg: #2b6f5c; --link-fg: #1f5d4c; --link-hover-color: #0f3a2f;
+    --link-selected-fg: #17473a; --button-bg: #1f5d4c; --button-hover-bg: #17473a;
+    --default-button-bg: #17473a; --default-button-hover-bg: #0f3a2f;
+    --selected-row: #eef5f1; --object-tools-bg: #5b6b64; --object-tools-hover-bg: #3f4c46;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --primary: #2f7d66; --secondary: #1d4f42; --link-fg: #7fd1b5; --link-hover-color: #a9e6d1;
+    --button-bg: #2f7d66; --button-hover-bg: #3a9479; --breadcrumbs-bg: #1d4f42; --selected-row: #1f2b27;
+  } }
+  html[data-theme="dark"] {
+    --primary: #2f7d66; --secondary: #1d4f42; --link-fg: #7fd1b5; --link-hover-color: #a9e6d1;
+    --button-bg: #2f7d66; --button-hover-bg: #3a9479; --breadcrumbs-bg: #1d4f42; --selected-row: #1f2b27;
+  }
+</style>{% endblock %}

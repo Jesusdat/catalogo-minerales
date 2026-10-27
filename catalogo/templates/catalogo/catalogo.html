@@ -1,0 +1,84 @@
+{% extends "catalogo/base.html" %}{% load gm %}
+{% block titulo %}Catálogo{% endblock %}
+{% block contenido %}
+<div class="mx-auto max-w-page px-4 pt-10 sm:px-6">
+  {% include "catalogo/parciales/titulo.html" with eyebrow="Catálogo" titulo="Todos los minerales" texto="Busca por nombre, fórmula, color, uso o localidad. Los filtros quedan en la dirección para que puedas compartir la búsqueda." %}
+  <div class="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[260px_minmax(0,1fr)]">
+    <form method="get" class="space-y-5 lg:sticky lg:top-24 lg:self-start" aria-label="Filtros" data-autoenvio>
+      <div><label class="label" for="q">Buscar</label>
+        <input id="q" name="q" type="search" value="{{ f.q }}" placeholder="Cobre, Durango, SiO2…" class="field" data-testid="input-buscar"></div>
+      <div><label class="label" for="clase">Clase química</label>
+        <select id="clase" name="clase" class="field"><option value="">Todas</option>{% for c in clases %}<option {% if f.clase == c %}selected{% endif %}>{{ c }}</option>{% endfor %}</select></div>
+      <div><label class="label" for="sistema">Sistema cristalino</label>
+        <select id="sistema" name="sistema" class="field"><option value="">Todos</option>{% for c in sistemas %}<option {% if f.sistema == c %}selected{% endif %}>{{ c }}</option>{% endfor %}</select></div>
+      <fieldset><legend class="label">Brillo</legend>
+        <div class="grid grid-cols-3 gap-1 rounded-md border hairline bg-surface p-1">
+          {% for v, t in brillos %}<label class="segmento"><input type="radio" name="brillo" value="{{ v }}" class="sr-only" {% if f.brillo == v %}checked{% endif %}><span>{{ t }}</span></label>{% endfor %}
+        </div></fieldset>
+      <fieldset><legend class="label">Dureza (Mohs): <span data-salida-dureza>{{ f.dmin|num }}–{{ f.dmax|num }}</span></legend>
+        <div class="flex items-center gap-3">
+          <input type="range" name="dmin" min="1" max="10" step="0.5" value="{{ f.dmin|num }}" aria-label="Dureza mínima" class="w-full min-w-0 flex-1 accent-[rgb(var(--accent))]">
+          <input type="range" name="dmax" min="1" max="10" step="0.5" value="{{ f.dmax|num }}" aria-label="Dureza máxima" class="w-full min-w-0 flex-1 accent-[rgb(var(--accent))]">
+        </div></fieldset>
+      <label class="flex min-h-[44px] cursor-pointer items-center gap-2 text-sm"><input type="checkbox" name="mexico" value="1" {% if f.mexico %}checked{% endif %} class="h-4 w-4 accent-[rgb(var(--accent))]"> Con yacimientos en México</label>
+      {% if f.elemento %}<input type="hidden" name="elemento" value="{{ f.elemento }}">{% endif %}
+      <input type="hidden" name="orden" value="{{ f.orden }}"><input type="hidden" name="vista" value="{{ f.vista }}">
+      <noscript><button class="btn-primary w-full">Aplicar filtros</button></noscript>
+      {% if f.activos %}<a href="{% url 'catalogo:catalogo' %}" class="btn-ghost w-full">{% icono "x" %} Limpiar filtros</a>{% endif %}
+    </form>
+
+    <div class="min-w-0">
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <p class="flex items-center gap-2 text-sm text-muted" aria-live="polite" data-testid="text-resultados">{% icono "sliders-horizontal" %} {{ n }} de {{ total }} minerales</p>
+        {% if f.elemento %}<a href="{% url_con elemento='' %}" class="chip hover:text-ink">Contiene {{ elemento_nombre }} ({{ f.elemento }}) {% icono "x" "h-3 w-3" %}</a>{% endif %}
+        <div class="ml-auto flex flex-wrap items-center gap-2">
+          <form method="get" data-autoenvio>
+            {% for k, v in request.GET.items %}{% if k != "orden" and k != "pagina" %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endif %}{% endfor %}
+            <label class="sr-only" for="orden">Ordenar</label>
+            <select id="orden" name="orden" class="field w-auto">{% for k, t in ordenes %}<option value="{{ k }}" {% if f.orden == k %}selected{% endif %}>{{ t }}</option>{% endfor %}</select>
+          </form>
+          <div class="flex rounded-md border hairline bg-surface" role="group" aria-label="Vista">
+            <a href="{% url_con vista='' %}" class="btn-icon border-0 {% if f.vista == 'cuadricula' %}text-ink bg-raised{% else %}text-muted{% endif %}" aria-label="Cuadrícula" aria-current="{% if f.vista == 'cuadricula' %}true{% else %}false{% endif %}">{% icono "layout-grid" %}</a>
+            <a href="{% url_con vista='lista' %}" class="btn-icon border-0 {% if f.vista == 'lista' %}text-ink bg-raised{% else %}text-muted{% endif %}" aria-label="Lista" aria-current="{% if f.vista == 'lista' %}true{% else %}false{% endif %}">{% icono "list" %}</a>
+          </div>
+          <details class="relative">
+            <summary class="btn-ghost cursor-pointer list-none">{% icono "download" %} <span class="hidden sm:inline">Exportar</span></summary>
+            <div class="card absolute right-0 z-20 mt-1 w-44 p-1 shadow-lg">
+              <a href="{% url_con formato='csv' %}" class="flex min-h-[40px] items-center rounded px-3 text-sm hover:bg-raised">CSV (Excel)</a>
+              <a href="{% url_con formato='json' %}" class="flex min-h-[40px] items-center rounded px-3 text-sm hover:bg-raised">JSON</a>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      {% if not pagina.object_list %}
+        {% url 'catalogo:catalogo' as limpiar %}
+        {% include "catalogo/parciales/vacio.html" with titulo="Sin coincidencias" texto="Prueba con menos filtros o con otra palabra." accion_url=limpiar accion_texto="Limpiar filtros" icono="search" %}
+      {% elif f.vista == "lista" %}
+        <div class="card overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="text-left text-xs text-muted"><tr class="border-b hairline"><th class="p-3 font-medium">Mineral</th><th class="p-3 font-medium">Fórmula</th><th class="hidden p-3 font-medium md:table-cell">Clase</th><th class="p-3 font-medium">Mohs</th><th class="hidden p-3 font-medium sm:table-cell">Densidad</th><th class="hidden p-3 font-medium lg:table-cell">Sistema</th></tr></thead>
+            <tbody>{% for m in pagina %}<tr class="border-b hairline last:border-0 hover:bg-raised/50">
+              <td class="p-3"><a href="{{ m.get_absolute_url }}" class="flex items-center gap-3 font-medium hover:text-accent">{% include "catalogo/parciales/foto.html" with clase="h-10 w-10 shrink-0 rounded" %}{{ m.nombre }}</a></td>
+              <td class="p-3 font-mono text-muted">{{ m.formula|formula }}</td>
+              <td class="hidden p-3 text-muted md:table-cell">{{ m.clase }}</td>
+              <td class="p-3 tabular-nums">{{ m.dureza_texto }}</td>
+              <td class="hidden p-3 tabular-nums sm:table-cell">{{ m.densidad|num }}</td>
+              <td class="hidden p-3 text-muted lg:table-cell">{{ m.sistema }}</td></tr>{% endfor %}</tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">{% for m in pagina %}{% include "catalogo/parciales/tarjeta.html" %}{% endfor %}</div>
+      {% endif %}
+
+      {% if pagina.has_other_pages %}
+      <nav class="mt-8 flex items-center justify-center gap-2" aria-label="Páginas">
+        {% if pagina.has_previous %}<a class="btn-ghost" href="?{{ qs }}{% if qs %}&{% endif %}pagina={{ pagina.previous_page_number }}">{% icono "arrow-left" %} Anterior</a>{% endif %}
+        <span class="px-3 text-sm text-muted">Página {{ pagina.number }} de {{ pagina.paginator.num_pages }}</span>
+        {% if pagina.has_next %}<a class="btn-ghost" href="?{{ qs }}{% if qs %}&{% endif %}pagina={{ pagina.next_page_number }}">Siguiente {% icono "arrow-right" %}</a>{% endif %}
+      </nav>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

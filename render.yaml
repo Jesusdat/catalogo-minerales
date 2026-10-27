@@ -1,0 +1,28 @@
+# Despliegue en Render (https://render.com) — Blueprint
+# La base de datos PostgreSQL va aparte (Neon o Supabase tienen plan gratuito
+# permanente). Pega su cadena de conexión en DATABASE_URL.
+services:
+  - type: web
+    name: gabinete-mineral
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: python manage.py migrate --noinput && python manage.py cargar_catalogo && python manage.py crear_admin && gunicorn gabinete.wsgi --workers 2 --timeout 60
+    healthCheckPath: /robots.txt
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: DJANGO_SUPERUSER_USERNAME
+        sync: false
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
+      - key: DJANGO_ADMIN_URL
+        sync: false

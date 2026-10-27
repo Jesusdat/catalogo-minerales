@@ -1,0 +1,42 @@
+{% extends "catalogo/base.html" %}{% load gm %}
+{% block titulo %}Tabla periódica{% endblock %}
+{% block contenido %}
+<div class="mx-auto max-w-page px-4 pt-10 sm:px-6">
+  {% include "catalogo/parciales/titulo.html" with eyebrow="Tabla periódica" titulo="Los elementos de la colección" %}
+  <p class="-mt-6 mb-8 max-w-[60ch] text-muted">{{ presentes }} elementos aparecen en las fórmulas del catálogo. El tono indica en cuántos minerales está cada uno; toca un elemento para ver cuáles lo contienen.</p>
+  <div class="overflow-x-auto pb-2">
+    <div class="tabla-periodica" role="grid" aria-label="Tabla periódica">
+      {% for c in celdas %}
+        {% if c.n %}<a href="?simbolo={{ c.e.simbolo }}#seleccion" class="celda nivel-{{ c.nivel }} {% if c.sel %}sel{% endif %}" style="grid-row:{{ c.e.fila }};grid-column:{{ c.e.columna }}" title="{{ c.e.nombre }}: {{ c.n }} mineral{{ c.n|pluralize:'es' }}" data-testid="el-{{ c.e.simbolo }}">
+        {% else %}<span class="celda nivel-0" style="grid-row:{{ c.e.fila }};grid-column:{{ c.e.columna }}" title="{{ c.e.nombre }}">{% endif %}
+          <span class="z">{{ c.e.z }}</span><span class="s">{{ c.e.simbolo }}</span>
+        {% if c.n %}</a>{% else %}</span>{% endif %}
+      {% endfor %}
+      <span class="celda-hueco" style="grid-row:6;grid-column:3">57–71</span>
+      <span class="celda-hueco" style="grid-row:7;grid-column:3">89–103</span>
+    </div>
+  </div>
+  <div class="mt-4 flex items-center gap-3 text-xs text-muted"><span>Menos</span>{% for i in "1234" %}<span class="leyenda nivel-{{ i }}"></span>{% endfor %}<span>Más minerales</span></div>
+
+  <div class="mt-12 grid gap-10 lg:grid-cols-[1fr_2fr]" id="seleccion">
+    <div>
+      <p class="eyebrow mb-3">Más frecuentes</p>
+      <ol class="divide-y divide-[rgb(var(--line)/0.12)] border-y hairline text-sm">
+        {% for e, n in frecuentes %}<li><a href="?simbolo={{ e.simbolo }}#seleccion" class="flex items-center justify-between py-2.5 hover:text-accent"><span><span class="mr-2 inline-block w-7 font-mono font-medium">{{ e.simbolo }}</span>{{ e.nombre }}</span><span class="tabular-nums text-muted">{{ n }}</span></a></li>{% endfor %}
+      </ol>
+    </div>
+    <div>
+      {% if seleccion %}
+        <div class="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+          <h2 class="font-display text-xl"><span class="font-mono text-accent">{{ seleccion.simbolo }}</span> · {{ seleccion.nombre }} <span class="text-sm text-muted">Z = {{ seleccion.z }}</span></h2>
+          <a href="{% url 'catalogo:catalogo' %}?elemento={{ seleccion.simbolo }}" class="text-sm font-medium text-accent">Ver en el catálogo</a>
+        </div>
+        {% if con_seleccion %}<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">{% for m in con_seleccion %}{% include "catalogo/parciales/tarjeta.html" %}{% endfor %}</div>
+        {% else %}<p class="card p-6 text-sm text-muted">Ningún mineral del catálogo contiene {{ seleccion.nombre|lower }}.</p>{% endif %}
+      {% else %}
+        <div class="card p-6"><p class="font-display text-lg">Elige un elemento</p><p class="mt-2 text-sm text-muted">Los que tienen color forman parte de algún mineral del catálogo.</p></div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

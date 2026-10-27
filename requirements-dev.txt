@@ -1,0 +1,3 @@
+-r requirements.txt
+# Solo para recompilar el CSS si cambias plantillas
+pytailwindcss>=0.2

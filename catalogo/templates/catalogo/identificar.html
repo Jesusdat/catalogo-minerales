@@ -1,0 +1,55 @@
+{% extends "catalogo/base.html" %}{% load gm %}
+{% block titulo %}Identificador{% endblock %}
+{% block contenido %}
+<div class="mx-auto max-w-page px-4 pt-10 sm:px-6">
+  <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <div><p class="eyebrow mb-2">Identificador</p><h1 class="font-display text-xl font-medium tracking-tight">¿Qué mineral es?</h1>
+      <p class="mt-2 max-w-[60ch] text-muted">Responde solo lo que puedas comprobar. Cada respuesta descarta minerales del catálogo; no hace falta contestar todo.</p></div>
+    {% if contestadas %}<a href="{% url 'catalogo:identificar' %}" class="btn-ghost self-start md:self-auto">{% icono "rotate-ccw" %} Empezar de nuevo</a>{% endif %}
+  </div>
+  <div class="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+    <form method="get" data-autoenvio class="space-y-6" id="form-identificar">
+      {% for p in preguntas %}
+      <fieldset class="border-b hairline pb-6 last:border-0">
+        <legend class="flex items-baseline gap-3"><span class="font-mono text-xs text-faint">0{{ forloop.counter }}</span><span class="font-semibold">{{ p.titulo }}</span></legend>
+        <p class="ml-7 mt-1 text-sm text-muted">{{ p.ayuda }}</p>
+        <div class="ml-7 mt-3 flex flex-wrap gap-2">
+          {% for v, t, hx in p.opciones %}
+          <label class="opcion"><input type="radio" name="{{ p.clave }}" value="{{ v }}" class="sr-only" {% if p.valor == v %}checked{% endif %} data-testid="op-{{ p.clave }}-{{ v }}">
+            <span>{% if hx %}<i class="muestra" style="background:{{ hx }}"></i>{% endif %}{{ t }}</span></label>
+          {% endfor %}
+          {% if p.valor %}<button type="button" class="text-xs text-muted underline underline-offset-2 hover:text-ink" data-limpiar="{{ p.clave }}">No sé</button>{% endif %}
+        </div>
+      </fieldset>
+      {% endfor %}
+      <noscript><button class="btn-primary">Buscar coincidencias</button></noscript>
+    </form>
+
+    <aside class="lg:sticky lg:top-24 lg:self-start" aria-live="polite" data-testid="resultados">
+      {% if not contestadas %}
+        <div class="card p-6"><p class="eyebrow mb-2">Resultados</p><p class="font-display text-lg">Empieza por cualquier pregunta.</p>
+          <p class="mt-2 text-sm text-muted">El brillo y la raya suelen ser las pistas más rápidas para separar grupos grandes de minerales.</p></div>
+      {% else %}
+        <p class="eyebrow mb-3">{{ completos|length }} coincidencia{{ completos|length|pluralize }} completa{{ completos|length|pluralize }} · {{ contestadas }} pista{{ contestadas|pluralize }}</p>
+        {% if completos %}
+          <ul class="space-y-2">{% for r in completos %}{% with m=r.mineral %}
+            <li><a href="{{ m.get_absolute_url }}" class="card flex items-center gap-3 p-2 pr-4 transition-colors hover:bg-raised">
+              {% include "catalogo/parciales/foto.html" with clase="h-14 w-14 shrink-0 rounded-md" %}
+              <div class="min-w-0"><p class="font-semibold">{{ m.nombre }} <span class="ml-1 font-mono text-sm font-normal text-muted">{{ m.formula|formula }}</span></p>
+                <p class="truncate text-xs text-muted">{{ r.coincidencias|join:" · " }}</p></div></a></li>
+          {% endwith %}{% endfor %}</ul>
+        {% else %}
+          <div class="card p-6 text-sm text-muted">Ningún mineral cumple todas las respuestas. Revisa alguna prueba o mira los más cercanos.</div>
+        {% endif %}
+        {% if cercanos %}
+          <p class="eyebrow mb-2 mt-8">También podría ser</p>
+          <ul class="divide-y divide-[rgb(var(--line)/0.12)] border-y hairline text-sm">{% for r in cercanos %}
+            <li class="flex items-center justify-between gap-3 py-2.5"><a href="{{ r.mineral.get_absolute_url }}" class="font-medium hover:text-accent">{{ r.mineral.nombre }}</a>
+              <span class="text-right text-xs text-muted">{% icono "check" "inline h-3 w-3" %} {{ r.puntos }}/{{ r.total }} · {% icono "x" "inline h-3 w-3" %} {{ r.fallos|join:", " }}</span></li>{% endfor %}
+          </ul>
+        {% endif %}
+      {% endif %}
+    </aside>
+  </div>
+</div>
+{% endblock %}

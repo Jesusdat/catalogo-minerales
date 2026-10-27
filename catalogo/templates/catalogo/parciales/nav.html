@@ -1,0 +1,4 @@
+<a href="{% url 'catalogo:catalogo' %}" class="nav-link {% if movil %}w-full{% endif %} {% if ruta == 'catalogo' or ruta == 'ficha' %}activo{% endif %}" data-testid="nav-catalogo">Catálogo</a>
+<a href="{% url 'catalogo:identificar' %}" class="nav-link {% if movil %}w-full{% endif %} {% if ruta == 'identificar' %}activo{% endif %}" data-testid="nav-identificar">Identificar</a>
+<a href="{% url 'catalogo:elementos' %}" class="nav-link {% if movil %}w-full{% endif %} {% if ruta == 'elementos' %}activo{% endif %}" data-testid="nav-elementos">Elementos</a>
+<a href="{% url 'catalogo:mapa' %}" class="nav-link {% if movil %}w-full{% endif %} {% if ruta == 'mapa' %}activo{% endif %}" data-testid="nav-mapa">Mapa</a>

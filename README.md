@@ -1,87 +1,156 @@
 # Gabinete Mineral
 
-Catálogo interactivo de minerales: fichas con propiedades físicas y químicas, cristales en 3D, mapa de yacimientos, tabla periódica, identificador por propiedades y un panel de administración que solo puede usar el dueño del repositorio.
-
-**Sitio:** https://jesusdat.github.io/catalogo-minerales/
+Catálogo interactivo de minerales hecho en **Python con Django**. Los datos y las fotos se guardan en una base de datos **SQL** (SQLite en local, PostgreSQL en producción), las páginas se generan en el servidor con plantillas HTML, y la edición se hace desde un panel de administración que solo puede usar el dueño.
 
 ## Funciones
 
-- **Catálogo** con búsqueda por nombre, fórmula, color, uso o localidad; filtros por clase química, sistema cristalino, brillo y dureza. Los filtros viven en la URL, así que se pueden compartir. Vista de cuadrícula o lista, y exportación a CSV o JSON.
-- **Ficha por mineral** con dirección propia (`#/minerales/fluorita`), foto con créditos, escala de Mohs, propiedades, usos, yacimientos en el mapa y minerales relacionados.
-- **Visor 3D** del hábito cristalino (cubo, octaedro, prisma hexagonal, romboedro, dodecaedro, etc.) con Three.js; se puede girar con el ratón o el dedo.
-- **Identificador**: preguntas caseras (brillo, prueba de la uña/moneda/navaja/vidrio, color de la raya, imán, ácido, peso) que ordenan los candidatos.
-- **Tabla periódica** con los elementos presentes en la colección; al tocar uno se filtran los minerales que lo contienen.
-- **Mapa de yacimientos** con Leaflet, filtrable por clase y por México.
-- **Comparador** de hasta 4 minerales lado a lado, con enlace compartible.
-- **Favoritos** guardados en el navegador.
-- **Tema claro y oscuro**, diseño adaptable a móvil e impresión de fichas.
-- **Panel de administración** (`#/admin`) para agregar, editar y borrar minerales, subir fotos (se comprimen a WebP en el navegador) y ver el historial de cambios.
+- **Catálogo** con búsqueda por nombre, fórmula, color, uso o localidad. Filtros por clase química, sistema cristalino, brillo, dureza, elemento y yacimientos en México. Todos los filtros quedan en la URL, así que se pueden compartir. Vista de cuadrícula o de lista, paginación y exportación a **CSV** o **JSON**.
+- **Ficha por mineral** (`/minerales/fluorita/`) con foto y créditos, escala de Mohs, propiedades, usos, yacimientos en el mapa, minerales relacionados y navegación anterior/siguiente.
+- **Visor 3D** de la forma cristalina con Three.js (cubo, octaedro, prismas, romboedro, dodecaedro…). Los vértices se calculan en Python (`catalogo/ciencia/cristal.py`).
+- **Identificador**: preguntas caseras (brillo, uña/moneda/navaja/vidrio, raya, imán, ácido, peso). El cálculo se hace en el servidor y funciona aunque JavaScript esté apagado.
+- **Tabla periódica** de los 118 elementos, con los que aparecen en la colección resaltados.
+- **Mapa de yacimientos** con Leaflet, filtrable por clase química y por México.
+- **Comparador** de hasta 4 minerales y **favoritos**, guardados en la sesión del servidor. El comparador tiene un enlace compartible (`/comparar/?ids=pirita,galena`).
+- **Mineral del día** y **escala de Mohs** interactiva en la portada.
+- **API JSON** de solo lectura: `/api/minerales/` y `/api/minerales/<id>/`.
+- Tema claro y oscuro, diseño adaptable a móvil, `sitemap.xml`, `robots.txt` y páginas 404/500 propias.
 
 ## Tecnologías
 
-React 18 + TypeScript · Vite · Tailwind CSS · Three.js · Leaflet · Vitest · GitHub Actions · GitHub Pages.
-
-## Ejecutar en local
-
-```bash
-npm install
-npm run dev        # servidor de desarrollo en http://localhost:5173
-npm test           # pruebas unitarias
-npm run build      # compila a dist/
-```
-
-## Cómo funciona la edición "solo para mí"
-
-El sitio es estático: no hay servidor ni base de datos. Los datos están en `public/data/minerales.json` y las fotos en `public/img/`.
-
-1. Crea un token en GitHub → Settings → Developer settings → [Fine-grained tokens](https://github.com/settings/personal-access-tokens/new).
-2. En **Repository access** elige *Only select repositories* → `catalogo-minerales`.
-3. En **Permissions → Repository permissions → Contents** elige **Read and write**. No hace falta nada más.
-4. Abre `#/admin` en el sitio y pega el token.
-
-El panel comprueba que el token pertenezca a `Jesusdat` y que tenga permiso de escritura; con cualquier otra cuenta se rechaza, y de todos modos GitHub no permitiría escribir. Cada vez que guardas, el navegador crea **un solo commit** con el JSON y las imágenes, y GitHub Actions vuelve a publicar el sitio en uno o dos minutos. Por eso el historial del panel es el mismo historial de Git: cualquier cambio se puede revertir.
-
-El token solo se envía a `api.github.com`. Se guarda en memoria y, si marcas "Recordar en este navegador", en `localStorage`. Úsalo solo en equipos de confianza y dale fecha de vencimiento.
-
-## Formato de datos
-
-Cada mineral en `public/data/minerales.json`:
-
-```json
-{
-  "id": "fluorita",
-  "nombre": "Fluorita",
-  "formula": "CaF2",
-  "clase": "Haluros",
-  "dureza_min": 4, "dureza_max": 4,
-  "densidad": 3.18,
-  "sistema": "Cúbico",
-  "habito": "octaedro",
-  "brillo": "Vítreo",
-  "color": "Violeta, verde, azul…",
-  "raya": "Blanca", "raya_grupo": "blanca",
-  "exfoliacion": "Perfecta octaédrica", "fractura": "Concoidea",
-  "magnetico": false, "efervescencia": false, "fluorescencia": true,
-  "color_hex": "#7C5BA6",
-  "usos": "…", "descripcion": "…",
-  "localidades": [{ "nombre": "Múzquiz", "region": "Coahuila, México", "lat": 27.87, "lon": -101.51 }],
-  "imagen": { "src": "img/fluorita.webp", "autor": "…", "licencia": "CC BY-SA 3.0", "licencia_url": "…", "fuente": "…" },
-  "wikipedia": "https://es.wikipedia.org/wiki/Fluorita"
-}
-```
+| Capa | Herramienta |
+|---|---|
+| Servidor y lógica | Python 3.12 · Django 5.2 |
+| Base de datos | SQL vía ORM de Django: SQLite (local) y PostgreSQL (producción) |
+| Imágenes | Pillow: las fotos se convierten a WebP y se guardan en la base de datos |
+| Plantillas | HTML de Django + Tailwind CSS (ya compilado en `static/`) |
+| Interactividad | JavaScript ligero sin framework: Three.js y Leaflet |
+| Producción | Gunicorn · WhiteNoise · GitHub Actions |
 
 ## Estructura
 
 ```
-public/data/minerales.json   datos del catálogo
-public/img/                  fotografías (WebP)
-src/lib/                     lógica: fórmulas, elementos, identificador, cliente de GitHub
-src/components/              interfaz compartida, visor 3D, mapa, tabla periódica
-src/pages/                   páginas del sitio
-streamlit/                   versión original en Streamlit (se conserva)
-.github/workflows/           verificación y publicación automática
+gabinete/             Configuración de Django (settings, urls, wsgi)
+catalogo/
+  models.py           Mineral, Localidad y Fotografia (tablas SQL)
+  views.py            Páginas, filtros, exportación, sesión y API
+  admin.py            Panel privado: edición, fotos, acciones e historial
+  ciencia/            Lógica en Python puro: fórmulas, tabla periódica,
+                      identificador y geometría de cristales
+  management/commands cargar_catalogo, exportar_catalogo, crear_admin
+  templates/          Plantillas HTML
+  static/             CSS compilado, JS, Three.js y Leaflet
+  tests/              Pruebas
+datos/                Datos semilla (minerales.json) y fotos iniciales
+tailwind/             Fuente del CSS
+streamlit/            Primera versión de la app (Streamlit)
+```
+
+## Ejecutar en local
+
+```bash
+python -m venv .venv
+source .venv/bin/activate          # En Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate           # crea las tablas en data.db
+python manage.py cargar_catalogo   # carga los 27 minerales y sus fotos
+python manage.py createsuperuser   # tu cuenta para el panel
+python manage.py runserver
+```
+
+- Sitio: http://localhost:8000
+- Panel: http://localhost:8000/admin/
+
+Pruebas:
+
+```bash
+python manage.py test
+```
+
+## Edición "solo para mí"
+
+La edición se hace en el panel de administración de Django, con estas protecciones:
+
+- **Solo entra un superusuario.** Una cuenta de personal (`is_staff`) que no sea superusuario no puede entrar.
+- **La cuenta se define con variables de entorno:** `DJANGO_SUPERUSER_USERNAME`, `DJANGO_SUPERUSER_EMAIL` y `DJANGO_SUPERUSER_PASSWORD`. En cada despliegue, `python manage.py crear_admin` crea o actualiza esa cuenta y les quita el acceso a todas las demás.
+- **Ruta privada opcional.** Con `DJANGO_ADMIN_URL=mi-panel-secreto/`, el panel deja de estar en `/admin/`.
+- **Seguridad en producción.** Con `DJANGO_DEBUG=false` las cookies van solo por HTTPS, se activa HSTS y hay protección CSRF.
+
+Desde el panel puedes:
+
+- Agregar, editar, ocultar o borrar minerales.
+- Subir la foto. Se reduce a 1400 px como máximo, se convierte a WebP y se guarda en la base de datos junto con sus créditos.
+- Editar las localidades con coordenadas.
+- Usar acciones en lote: publicar, ocultar, duplicar o exportar a JSON.
+- Ver el **historial de cambios**: quién cambió qué y cuándo.
+
+Un mineral sin publicar solo lo ves tú.
+
+### Respaldo
+
+```bash
+python manage.py exportar_catalogo            # escribe datos/minerales.json y datos/img/*.webp
+python manage.py cargar_catalogo --actualizar # vuelve a cargar desde esos archivos
+```
+
+`cargar_catalogo` no hace nada si ya hay minerales, así que se puede ejecutar en cada arranque sin borrar tus cambios.
+
+## Publicarlo en internet
+
+Django necesita un servidor que ejecute Python, así que no funciona en GitHub Pages. Hay dos opciones gratuitas.
+
+### Opción 1: Render + Neon (recomendada)
+
+1. Crea una base de datos PostgreSQL gratuita en [Neon](https://neon.tech) o [Supabase](https://supabase.com) y copia la cadena de conexión (`postgresql://…`).
+2. En [Render](https://render.com) elige **New → Blueprint** y selecciona este repositorio. Render lee `render.yaml`.
+3. Llena las variables que pide:
+   - `DATABASE_URL`
+   - `DJANGO_SUPERUSER_USERNAME`
+   - `DJANGO_SUPERUSER_EMAIL`
+   - `DJANGO_SUPERUSER_PASSWORD`
+   - `DJANGO_ADMIN_URL` (opcional)
+
+   `DJANGO_SECRET_KEY` se genera solo.
+4. Al arrancar, Render aplica las migraciones, carga el catálogo si la base está vacía y crea tu cuenta.
+
+Notas:
+
+- La base de datos de Render también sirve, pero en el plan gratuito caduca, por eso conviene más Neon o Supabase.
+- El plan gratuito de Render "se duerme" tras un rato sin visitas, y la primera carga después de eso tarda unos segundos.
+
+### Opción 2: PythonAnywhere
+
+1. Clona el repositorio en una consola Bash.
+2. Crea un virtualenv y ejecuta `pip install -r requirements.txt`.
+3. Configura la app web como "Manual configuration" apuntando a `gabinete/wsgi.py`.
+4. Mapea `/static/` a la carpeta `staticfiles/`.
+5. Ejecuta los comandos de "Ejecutar en local" junto con `collectstatic`.
+
+Con SQLite no hace falta una base externa.
+
+### Variables de entorno
+
+Consulta [.env.example](.env.example).
+
+| Variable | Para qué sirve |
+|---|---|
+| `DJANGO_DEBUG` | `false` en producción |
+| `DJANGO_SECRET_KEY` | Clave larga y aleatoria |
+| `DJANGO_ALLOWED_HOSTS` | Dominios permitidos, separados por comas. En Render se detecta solo. |
+| `DATABASE_URL` | PostgreSQL. Si no se define, se usa SQLite (`data.db`). |
+| `DJANGO_SUPERUSER_*` | Tu cuenta de administración |
+| `DJANGO_ADMIN_URL` | Ruta del panel (por defecto `admin/`) |
+
+## Cambiar el diseño
+
+El CSS ya compilado está en `catalogo/static/catalogo/css/app.css`. Si cambias clases en las plantillas, vuelve a compilarlo:
+
+```bash
+pip install -r requirements-dev.txt
+tailwindcss -c tailwind/tailwind.config.js -i tailwind/entrada.css -o catalogo/static/catalogo/css/app.css --minify
 ```
 
 ## Créditos
 
-Las fotografías provienen de Wikimedia Commons bajo licencias Creative Commons; el autor y la licencia aparecen en cada ficha y en la página "Acerca". Mapa base © Esri y colaboradores de OpenStreetMap.
+Las fotografías provienen de Wikimedia Commons bajo licencias Creative Commons. El autor y la licencia de cada una aparecen en su ficha y en `/acerca/`. Las fotos de cuarzo, calcita, pirita y magnesita vienen de la primera versión del proyecto.
+
+Iconos: [Lucide](https://lucide.dev) (ISC). Mapa base: © Esri y colaboradores de OpenStreetMap.

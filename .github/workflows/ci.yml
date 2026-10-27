@@ -1,0 +1,40 @@
+name: Pruebas
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  django:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: gabinete
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/gabinete
+      DJANGO_SECRET_KEY: clave-solo-para-ci-0123456789-abcdefghijklmnopqrstuvwxyz
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Migraciones al día
+        run: python manage.py makemigrations --check --dry-run
+      - name: Pruebas (PostgreSQL)
+        run: python manage.py test
+      - name: Revisión de producción
+        env:
+          DJANGO_DEBUG: "false"
+          DJANGO_ALLOWED_HOSTS: ejemplo.com
+        run: |
+          python manage.py check --deploy --fail-level ERROR
+          python manage.py collectstatic --noinput
