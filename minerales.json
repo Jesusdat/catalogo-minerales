@@ -1,30 +1,54 @@
 {
     "Cuarzo": {
         "formula": "SiO₂",
-        "dureza": "7",
+        "dureza_min": 7.0,
+        "dureza_max": 7.0,
         "sistema": "Trigonal",
+        "color": "Incoloro, blanco, rosa, violeta, ahumado",
+        "brillo": "Vítreo",
+        "raya": "Blanca",
+        "densidad": 2.65,
+        "usos": "Vidrio, electrónica (osciladores), joyería, abrasivos",
         "descripcion": "Uno de los minerales más abundantes en la corteza terrestre.",
         "imagen": "img/cuarzo.jpg"
     },
     "Pirita": {
         "formula": "FeS₂",
-        "dureza": "6 - 6.5",
+        "dureza_min": 6.0,
+        "dureza_max": 6.5,
         "sistema": "Cúbico",
-        "descripcion": "Famoso por su intenso brillo metálico dorado.",
+        "color": "Amarillo latón",
+        "brillo": "Metálico",
+        "raya": "Negra verdosa",
+        "densidad": 5.0,
+        "usos": "Producción de ácido sulfúrico, coleccionismo",
+        "descripcion": "Famoso por su intenso brillo metálico dorado; conocido como 'el oro de los tontos'.",
         "imagen": "img/pirita.jpg"
     },
     "Calcita": {
-        "formula": "CaCO3",
-        "dureza": "3",
+        "formula": "CaCO₃",
+        "dureza_min": 3.0,
+        "dureza_max": 3.0,
         "sistema": "Trigonal",
-        "descripcion": "Es muy común y tiene una amplia distribución por todo el planeta, se calcula que aproximadamente el 4 % en peso de la corteza terrestre es de calcita.",
+        "color": "Incoloro, blanco, amarillo, naranja",
+        "brillo": "Vítreo",
+        "raya": "Blanca",
+        "densidad": 2.71,
+        "usos": "Cemento, cal, óptica (espato de Islandia)",
+        "descripcion": "Es muy común y tiene una amplia distribución por todo el planeta; se calcula que aproximadamente el 4 % en peso de la corteza terrestre es calcita.",
         "imagen": "img/calcita.jpg"
     },
-    "magnesita": {
+    "Magnesita": {
         "formula": "MgCO₃",
-        "dureza": "3,5",
-        "sistema": "incoloro",
-        "descripcion": "No debe confundirse con la magnetita, que es un óxido de hierro fuertemente magnético",
-        "imagen": "img\\magnesita.jpg"
+        "dureza_min": 3.5,
+        "dureza_max": 4.5,
+        "sistema": "Trigonal",
+        "color": "Incoloro, blanco, gris, amarillento",
+        "brillo": "Vítreo",
+        "raya": "Blanca",
+        "densidad": 3.0,
+        "usos": "Refractarios, obtención de magnesio",
+        "descripcion": "No debe confundirse con la magnetita, que es un óxido de hierro fuertemente magnético.",
+        "imagen": "img/magnesita.jpg"
     }
 }
