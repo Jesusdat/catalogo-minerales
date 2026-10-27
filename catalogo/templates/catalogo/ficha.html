@@ -1,0 +1,109 @@
+{% extends "catalogo/base.html" %}{% load gm static %}
+{% block titulo %}{{ m.nombre }} ({{ m.formula_unicode }}){% endblock %}
+{% block descripcion %}{{ m.descripcion|truncatechars:155 }}{% endblock %}
+{% block og_titulo %}{{ m.nombre }} · Gabinete Mineral{% endblock %}
+{% block og_extra %}{% if m.tiene_foto %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ m.foto_url }}">{% endif %}{% endblock %}
+{% block cabeza %}<link rel="stylesheet" href="{% static 'catalogo/vendor/leaflet/leaflet.css' %}">{% endblock %}
+{% block contenido %}
+<article class="mx-auto max-w-page px-4 pt-6 sm:px-6" data-testid="ficha-{{ m.slug }}">
+  {% if not m.publicado %}<p class="card mb-4 px-4 py-3 text-sm">Borrador: solo tú puedes ver esta ficha.</p>{% endif %}
+  <nav class="no-print mb-6 flex items-center justify-between gap-2 text-sm" aria-label="Navegación de fichas">
+    <a href="{% url 'catalogo:catalogo' %}" class="inline-flex min-h-[44px] items-center gap-1.5 text-muted hover:text-ink">{% icono "arrow-left" %} Catálogo</a>
+    <div class="flex min-w-0 gap-1">
+      {% if anterior %}<a href="{{ anterior.get_absolute_url }}" class="inline-flex min-h-[44px] items-center gap-1 rounded-md px-2 text-muted hover:text-ink sm:px-3">{% icono "arrow-left" %}<span class="truncate">{{ anterior.nombre }}</span></a>{% endif %}
+      {% if siguiente %}<a href="{{ siguiente.get_absolute_url }}" class="inline-flex min-h-[44px] items-center gap-1 rounded-md px-2 text-muted hover:text-ink sm:px-3"><span class="truncate">{{ siguiente.nombre }}</span>{% icono "arrow-right" %}</a>{% endif %}
+    </div>
+  </nav>
+
+  <div class="grid gap-10 lg:grid-cols-[1.15fr_1fr]">
+    <div class="space-y-3">
+      <figure class="overflow-hidden rounded-xl border hairline">
+        {% include "catalogo/parciales/foto.html" with clase="aspect-[4/3] w-full" carga="eager" %}
+      </figure>
+      {% if m.tiene_foto %}
+      <figcaption class="text-xs text-faint">
+        Foto: {{ m.foto.autor|default:"sin datos de autoría" }}{% if m.foto.licencia %} ·
+        {% if m.foto.licencia_url %}<a href="{{ m.foto.licencia_url }}" class="underline underline-offset-2 hover:text-ink">{{ m.foto.licencia }}</a>{% else %}{{ m.foto.licencia }}{% endif %}{% endif %}{% if m.foto.fuente %} ·
+        <a href="{{ m.foto.fuente }}" class="underline underline-offset-2 hover:text-ink">Fuente</a>{% endif %}
+      </figcaption>
+      {% endif %}
+    </div>
+
+    <div>
+      <p class="eyebrow">{{ m.clase }}</p>
+      <h1 class="mt-2 font-display text-2xl font-medium tracking-tight">{{ m.nombre }}</h1>
+      <span class="mt-2 block font-mono text-xl text-muted">{{ m.formula|formula }}</span>
+      <div class="no-print mt-6 flex flex-wrap gap-2">
+        {% include "catalogo/parciales/alternar.html" with clave="favoritos" grande=True %}
+        {% include "catalogo/parciales/alternar.html" with clave="comparar" grande=True %}
+        <button type="button" data-imprimir class="btn-icon" aria-label="Imprimir ficha" title="Imprimir ficha">{% icono "printer" %}</button>
+        {% if user.is_superuser %}<a href="{% url 'admin:catalogo_mineral_change' m.pk %}" class="btn-ghost">{% icono "lock" %} Editar</a>{% endif %}
+      </div>
+
+      <dl class="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border hairline bg-[rgb(var(--line)/0.12)]">
+        <div class="bg-surface p-4"><dt class="text-xs text-muted">Dureza (Mohs)</dt><dd class="mt-1 font-display text-xl tabular-nums">{{ m.dureza_texto }}</dd></div>
+        <div class="bg-surface p-4"><dt class="text-xs text-muted">Densidad</dt><dd class="mt-1 font-display text-xl tabular-nums">{{ m.densidad|num }} <span class="font-sans text-sm text-muted">g/cm³</span></dd></div>
+      </dl>
+      <div class="mt-5">
+        {% include "catalogo/parciales/mohs.html" %}
+        {% if referencia_mohs %}<p class="mt-2 text-xs text-muted">
+          {% if referencia_mohs.slug == m.slug %}Es el mineral de referencia del grado {{ referencia_mohs.grado }} de la escala.
+          {% else %}Más duro o igual que <a href="{% url 'catalogo:ficha' referencia_mohs.slug %}" class="text-ink underline underline-offset-2">{{ referencia_mohs.nombre|lower }}</a>, referencia del grado {{ referencia_mohs.grado }}.{% endif %}
+        </p>{% endif %}
+      </div>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {% if m.magnetico %}<span class="chip">{% icono "magnet" "h-3.5 w-3.5" %} Magnético</span>{% endif %}
+        {% if m.efervescencia %}<span class="chip">{% icono "flask-conical" "h-3.5 w-3.5" %} Efervescente con ácido</span>{% endif %}
+        {% if m.fluorescencia %}<span class="chip">{% icono "sun" "h-3.5 w-3.5" %} Puede ser fluorescente</span>{% endif %}
+        {% if m.metalico %}<span class="chip">Brillo metálico</span>{% endif %}
+      </div>
+      <p class="mt-6 text-base leading-relaxed">{{ m.descripcion }}</p>
+    </div>
+  </div>
+
+  <section class="mt-16 grid gap-10 lg:grid-cols-[1fr_1.15fr]">
+    <div>
+      <h2 class="mb-4 text-lg font-semibold">Propiedades</h2>
+      <dl class="divide-y divide-[rgb(var(--line)/0.12)] border-y hairline">
+        {% for k, v in propiedades %}<div class="grid grid-cols-[120px_1fr] gap-4 py-3 text-sm sm:grid-cols-[140px_1fr]"><dt class="text-muted">{{ k }}</dt><dd>{{ v|default:"—" }}</dd></div>{% endfor %}
+        <div class="grid grid-cols-[120px_1fr] gap-4 py-3 text-sm sm:grid-cols-[140px_1fr]"><dt class="text-muted">Elementos</dt>
+          <dd class="flex flex-wrap gap-1.5">{% for e in elementos %}<a href="{% url 'catalogo:elementos' %}?simbolo={{ e.simbolo }}" class="chip hover:border-accent hover:text-ink"><span class="font-mono font-medium text-ink">{{ e.simbolo }}</span> {{ e.nombre }}</a>{% endfor %}</dd></div>
+      </dl>
+      {% if m.wikipedia %}<a href="{{ m.wikipedia }}" class="mt-4 inline-flex min-h-[44px] items-center gap-1.5 text-sm text-muted hover:text-ink">Más en Wikipedia {% icono "external-link" "h-3.5 w-3.5" %}</a>{% endif %}
+    </div>
+    <div>
+      <div class="mb-4 flex items-baseline justify-between gap-4"><h2 class="text-lg font-semibold">Forma cristalina</h2><span class="text-right text-xs text-muted">{{ habito }} · {{ m.sistema }}</span></div>
+      <div class="relative aspect-[4/3] overflow-hidden rounded-xl border hairline bg-surface">
+        <div class="cristal h-full w-full" data-cristal="cristal-datos" role="img" aria-label="Modelo 3D del cristal de {{ m.nombre }}"></div>
+        {{ cristal|json_script:"cristal-datos" }}
+        <p class="pointer-events-none absolute bottom-3 left-4 text-xs text-faint">Forma idealizada · arrastra para girar</p>
+      </div>
+    </div>
+  </section>
+
+  {% if puntos %}
+  <section class="mt-16">
+    <h2 class="mb-4 text-lg font-semibold">Dónde se encuentra</h2>
+    <div class="grid gap-6 lg:grid-cols-[1fr_2fr]">
+      <ul class="divide-y divide-[rgb(var(--line)/0.12)] border-y hairline text-sm">
+        {% for l in m.localidades.all %}<li class="flex items-start gap-3 py-3">{% icono "map-pin" "mt-0.5 h-4 w-4 shrink-0 text-accent" %}<div><p class="font-medium">{{ l.nombre }}</p><p class="text-muted">{{ l.region }}</p></div></li>{% endfor %}
+      </ul>
+      <div class="mapa h-[320px] overflow-hidden rounded-xl border hairline" data-mapa="puntos-datos"></div>
+      {{ puntos|json_script:"puntos-datos" }}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if relacionados %}
+  <section class="mt-16 no-print">
+    <h2 class="mb-6 font-display text-xl font-medium tracking-tight">Minerales parecidos</h2>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">{% for m in relacionados %}{% include "catalogo/parciales/tarjeta.html" %}{% endfor %}</div>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'catalogo/vendor/leaflet/leaflet.js' %}" defer></script>
+<script src="{% static 'catalogo/js/mapa.js' %}" defer></script>
+<script type="module" src="{% static 'catalogo/js/cristal.js' %}"></script>
+{% endblock %}

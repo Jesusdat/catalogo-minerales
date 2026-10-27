@@ -1,0 +1,7 @@
+{% load gm %}
+<div class="flex flex-col items-center px-6 py-16 text-center">
+  <div class="mb-4 text-faint">{% icono icono|default:"gem" "h-10 w-10" %}</div>
+  <h2 class="text-lg font-semibold">{{ titulo }}</h2>
+  <p class="mt-2 max-w-[40ch] text-sm text-muted">{{ texto }}</p>
+  {% if accion_url %}<div class="mt-6"><a href="{{ accion_url }}" class="btn-primary">{{ accion_texto }}</a></div>{% endif %}
+</div>

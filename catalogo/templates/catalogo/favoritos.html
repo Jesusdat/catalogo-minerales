@@ -1,0 +1,16 @@
+{% extends "catalogo/base.html" %}
+{% block titulo %}Favoritos{% endblock %}
+{% block contenido %}
+<div class="mx-auto max-w-page px-4 pt-10 sm:px-6">
+  {% if minerales %}
+    <div class="mb-8 flex items-end justify-between gap-4">
+      <div><p class="eyebrow mb-2">Favoritos</p><h1 class="font-display text-xl font-medium tracking-tight">Tus {{ minerales|length }} minerales guardados</h1></div>
+      <form method="post" action="{% url 'catalogo:vaciar' 'favoritos' %}">{% csrf_token %}<button class="btn-ghost">Vaciar</button></form>
+    </div>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">{% for m in minerales %}{% include "catalogo/parciales/tarjeta.html" %}{% endfor %}</div>
+  {% else %}
+    {% url 'catalogo:catalogo' as cat %}
+    {% include "catalogo/parciales/vacio.html" with titulo="Aún no tienes favoritos" texto="Marca con el corazón los minerales que quieras tener a mano. Se guardan en este navegador." accion_url=cat accion_texto="Explorar el catálogo" icono="heart" %}
+  {% endif %}
+</div>
+{% endblock %}

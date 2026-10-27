@@ -1,0 +1,3 @@
+{% extends "catalogo/base.html" %}
+{% block titulo %}Página no encontrada{% endblock %}
+{% block contenido %}{% url 'catalogo:inicio' as inicio %}{% include "catalogo/parciales/vacio.html" with titulo="Página no encontrada" texto="La dirección no existe o el mineral cambió de nombre." accion_url=inicio accion_texto="Volver al inicio" %}{% endblock %}

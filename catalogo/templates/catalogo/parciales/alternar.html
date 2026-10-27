@@ -1,0 +1,16 @@
+{% load gm %}{% en_sesion clave m.slug as activo %}{# Botón de favorito o comparar. Funciona sin JavaScript (formulario POST) y con él sin recargar. #}
+<form method="post" action="{% url 'catalogo:alternar' clave m.slug %}" class="contents" data-alternar="{{ clave }}">
+  {% csrf_token %}<input type="hidden" name="siguiente" value="{{ request.get_full_path }}">
+  {% if grande %}
+    <button type="submit" class="btn-ghost" aria-pressed="{{ activo|yesno:'true,false' }}" data-testid="btn-{{ clave }}"
+            data-on="{% if clave == 'favoritos' %}En favoritos{% else %}En el comparador{% endif %}" data-off="{% if clave == 'favoritos' %}Favorito{% else %}Comparar{% endif %}">
+      {% if clave == 'favoritos' %}{% icono "heart" "h-4 w-4 icono-fav" %}{% else %}{% icono "scale" "h-4 w-4 icono-cmp" %}{% endif %}
+      <span data-texto>{% if clave == 'favoritos' %}{{ activo|yesno:"En favoritos,Favorito" }}{% else %}{{ activo|yesno:"En el comparador,Comparar" }}{% endif %}</span>
+    </button>
+  {% else %}
+    <button type="submit" class="inline-flex h-11 w-11 items-center justify-center rounded-md text-muted hover:text-ink" aria-pressed="{{ activo|yesno:'true,false' }}"
+            aria-label="{% if clave == 'favoritos' %}Favorito: {{ m.nombre }}{% else %}Comparar: {{ m.nombre }}{% endif %}" data-testid="{% if clave == 'favoritos' %}fav{% else %}cmp{% endif %}-{{ m.slug }}">
+      {% if clave == 'favoritos' %}{% icono "heart" "h-[18px] w-[18px] icono-fav" %}{% else %}{% icono "scale" "h-[18px] w-[18px] icono-cmp" %}{% endif %}
+    </button>
+  {% endif %}
+</form>

@@ -1,0 +1,19 @@
+{% extends "catalogo/base.html" %}{% load gm static %}
+{% block titulo %}Mapa de yacimientos{% endblock %}
+{% block cabeza %}<link rel="stylesheet" href="{% static 'catalogo/vendor/leaflet/leaflet.css' %}">{% endblock %}
+{% block contenido %}
+<div class="mx-auto max-w-page px-4 pt-10 sm:px-6">
+  {% include "catalogo/parciales/titulo.html" with eyebrow="Mapa" titulo="Dónde se encuentran" texto="Localidades clásicas de cada mineral. Las ubicaciones son aproximadas, a nivel de población o distrito minero." %}
+  <form method="get" data-autoenvio class="mb-4 flex flex-wrap items-center gap-3">
+    <label class="sr-only" for="clase">Clase</label>
+    <select id="clase" name="clase" class="field w-auto"><option value="">Todas las clases</option>{% for c in clases %}<option {% if clase == c %}selected{% endif %}>{{ c }}</option>{% endfor %}</select>
+    <label class="btn-ghost cursor-pointer has-[:checked]:border-accent has-[:checked]:text-accent"><input type="checkbox" name="mexico" value="1" class="sr-only" {% if mexico %}checked{% endif %}>Solo México</label>
+    <span class="text-sm text-muted" data-testid="text-puntos">{{ puntos|length }} registros de yacimiento</span>
+    <noscript><button class="btn-primary">Aplicar</button></noscript>
+  </form>
+  <div class="mapa h-[62vh] min-h-[380px] overflow-hidden rounded-xl border hairline" data-mapa="puntos-datos" data-testid="mapa"></div>
+  {{ puntos|json_script:"puntos-datos" }}
+  {% if paises %}<div class="mt-6 flex flex-wrap gap-2">{% for p, n in paises %}<span class="chip">{{ p }} · {{ n }}</span>{% endfor %}</div>{% endif %}
+</div>
+{% endblock %}
+{% block scripts %}<script src="{% static 'catalogo/vendor/leaflet/leaflet.js' %}" defer></script><script src="{% static 'catalogo/js/mapa.js' %}" defer></script>{% endblock %}

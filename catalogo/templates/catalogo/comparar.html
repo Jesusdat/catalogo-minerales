@@ -1,0 +1,39 @@
+{% extends "catalogo/base.html" %}{% load gm %}
+{% block titulo %}Comparador{% endblock %}
+{% block contenido %}
+<div class="mx-auto max-w-page px-4 pt-10 sm:px-6">
+  {% if not sel %}
+    {% url 'catalogo:catalogo' as cat %}
+    {% include "catalogo/parciales/vacio.html" with titulo="El comparador está vacío" texto="Pulsa el icono de balanza en cualquier tarjeta o ficha para añadir hasta cuatro minerales." accion_url=cat accion_texto="Elegir minerales" icono="scale" %}
+  {% else %}
+  <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <div><p class="eyebrow mb-2">Comparador</p><h1 class="font-display text-xl font-medium tracking-tight">{{ sel|length }} mineral{{ sel|length|pluralize:"es" }} lado a lado</h1>
+      <p class="mt-2 text-muted">Las filas con el mismo valor aparecen atenuadas para que destaquen las diferencias.</p></div>
+    <div class="flex gap-2">
+      <button type="button" class="btn-ghost" data-copiar="{{ enlace }}">{% icono "link" %} <span data-texto>Copiar enlace</span></button>
+      <form method="post" action="{% url 'catalogo:vaciar' 'comparar' %}">{% csrf_token %}<button class="btn-ghost">Vaciar</button></form>
+    </div>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[640px] table-fixed text-sm">
+      <thead><tr><th class="w-36 sm:w-44"></th>{% for m in sel %}
+        <th class="p-2 align-top font-normal"><div class="relative">
+          <a href="{{ m.get_absolute_url }}" class="block overflow-hidden rounded-lg border hairline">{% include "catalogo/parciales/foto.html" with clase="aspect-[4/3] w-full" %}</a>
+          <div class="absolute right-1 top-1 rounded-md bg-bg/80">{% include "catalogo/parciales/alternar.html" with clave="comparar" %}</div>
+          <a href="{{ m.get_absolute_url }}" class="mt-2 block text-left font-semibold hover:text-accent">{{ m.nombre }}</a></div></th>{% endfor %}</tr></thead>
+      <tbody>
+        <tr class="border-t hairline"><th class="py-3 pr-4 text-left text-xs font-medium text-muted">Dureza en Mohs</th>{% for b in dureza_barras %}<td class="p-3">{% include "catalogo/parciales/mohs.html" with m=b.m compacta=True %}</td>{% endfor %}</tr>
+        {% for fila in tabla %}<tr class="border-t hairline {% if fila.iguales %}text-muted{% endif %}"><th class="py-3 pr-4 text-left text-xs font-medium text-muted">{{ fila.etiqueta }}</th>
+          {% for v in fila.valores %}<td class="p-3 align-top {% if fila.mono %}font-mono{% endif %}">{{ v }}</td>{% endfor %}</tr>{% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+  {% if sugeridos and sel|length < max %}
+  <section class="mt-14"><p class="eyebrow mb-3">Añadir otro</p>
+    <div class="flex flex-wrap gap-2">{% for m in sugeridos %}
+      <form method="post" action="{% url 'catalogo:alternar' 'comparar' m.slug %}">{% csrf_token %}<button class="chip min-h-[36px] hover:border-accent hover:text-ink">+ {{ m.nombre }}</button></form>{% endfor %}
+    </div></section>
+  {% endif %}
+</div>
+{% endblock %}

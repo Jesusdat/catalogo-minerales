@@ -1,0 +1,109 @@
+{% extends "catalogo/base.html" %}{% load gm %}
+{% block titulo %}Catálogo de minerales{% endblock %}
+{% block contenido %}
+{% if vacio %}
+  {% include "catalogo/parciales/vacio.html" with titulo="El catálogo está vacío" texto="Ejecuta python manage.py cargar_catalogo o agrega minerales desde el panel de administración." %}
+{% else %}
+<section class="mx-auto grid max-w-page items-center gap-10 px-4 pb-16 pt-10 sm:px-6 md:grid-cols-[1.1fr_1fr] md:pt-16">
+  <div class="rise">
+    <p class="eyebrow mb-5">Catálogo mineralógico · {{ stats.0.1 }} ejemplares</p>
+    <h1 class="font-display text-3xl font-medium leading-[0.98] tracking-tight">De la sal de Guerrero Negro al diamante de Kimberley.</h1>
+    <p class="mt-6 max-w-[48ch] text-lg text-muted">Fichas con dureza, densidad, raya y yacimientos; cristales en 3D que puedes girar, y un identificador para averiguar qué mineral tienes en la mano.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="{% url 'catalogo:catalogo' %}" class="btn-primary" data-testid="cta-catalogo">Explorar el catálogo {% icono "arrow-right" %}</a>
+      <a href="{% url 'catalogo:identificar' %}" class="btn-ghost" data-testid="cta-identificar">{% icono "search" %} Identificar un mineral</a>
+    </div>
+  </div>
+  <a href="{{ destacado.get_absolute_url }}" class="group relative block aspect-square overflow-hidden rounded-xl border hairline bg-surface">
+    <div class="cristal h-full w-full" data-cristal="cristal-datos" role="img" aria-label="Modelo 3D de {{ destacado.nombre }}"></div>
+    {{ cristal|json_script:"cristal-datos" }}
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-5">
+      <div><p class="eyebrow">Mineral del día · {{ destacado.sistema }}</p><p class="font-display text-xl group-hover:text-accent">{{ destacado.nombre }}</p></div>
+      <span class="font-mono text-lg text-muted">{{ destacado.formula|formula }}</span>
+    </div>
+    <p class="pointer-events-none absolute left-5 top-4 text-xs text-faint">Arrastra para girar</p>
+  </a>
+</section>
+
+<section class="border-y hairline bg-surface">
+  <dl class="mx-auto grid max-w-page grid-cols-2 gap-px px-4 sm:px-6 md:grid-cols-4">
+    {% for k, v in stats %}<div class="py-7 md:px-4 md:first:pl-0"><dt class="text-xs text-muted">{{ k }}</dt><dd class="mt-1 font-display text-2xl tabular-nums">{{ v }}</dd></div>{% endfor %}
+  </dl>
+</section>
+
+<section class="mx-auto max-w-page px-4 py-20 sm:px-6 md:py-28" data-mohs>
+  <div class="grid gap-10 md:grid-cols-[1fr_1.3fr] md:gap-16">
+    <div>
+      <p class="eyebrow mb-3">Escala de Mohs</p>
+      <h2 class="font-display text-2xl font-medium tracking-tight">Diez minerales para medir la dureza de todos los demás.</h2>
+      <p class="mt-4 max-w-[46ch] text-muted">Cada mineral de la escala raya al anterior y es rayado por el siguiente. Elige un grado.</p>
+      <div class="mt-8 grid grid-cols-10 gap-1" role="radiogroup" aria-label="Grado de dureza">
+        {% for g in mohs %}<button type="button" role="radio" aria-checked="{% if g.grado == 7 %}true{% else %}false{% endif %}" data-grado="{{ g.grado }}" class="mohs-btn" data-testid="mohs-{{ g.grado }}">{{ g.grado }}</button>{% endfor %}
+      </div>
+      <div class="mt-2 flex justify-between text-xs text-faint"><span>Más blando</span><span>Más duro</span></div>
+    </div>
+    <div>
+      {% for g in mohs %}
+        <div data-panel="{{ g.grado }}" {% if g.grado != 7 %}hidden{% endif %}>
+        {% if g.mineral %}{% with m=g.mineral %}
+          <a href="{{ m.get_absolute_url }}" class="group card rise grid overflow-hidden sm:grid-cols-[1.1fr_1fr]">
+            {% include "catalogo/parciales/foto.html" with clase="aspect-[4/3] h-full w-full sm:aspect-auto" %}
+            <div class="flex flex-col p-6">
+              <p class="font-mono text-xs text-muted">Grado {{ g.grado }}</p>
+              <h3 class="mt-1 font-display text-xl">{{ m.nombre }}</h3>
+              <span class="mt-1 font-mono text-muted">{{ m.formula|formula }}</span>
+              <p class="mt-4 line-clamp-5 text-sm text-muted">{{ m.descripcion }}</p>
+              <span class="mt-auto inline-flex items-center gap-1 pt-6 text-sm font-medium text-accent">Ver ficha {% icono "arrow-right" "h-4 w-4 transition-transform group-hover:translate-x-0.5" %}</span>
+            </div>
+          </a>
+        {% endwith %}{% else %}
+          <div class="card p-6"><p class="font-mono text-xs text-muted">Grado {{ g.grado }}</p><h3 class="mt-1 font-display text-xl">{{ g.nombre }}</h3><p class="mt-3 text-sm text-muted">Aún no está en el catálogo.</p></div>
+        {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto max-w-page px-4 pb-20 sm:px-6">
+  <div class="mb-6 flex items-end justify-between">
+    <h2 class="font-display text-xl font-medium tracking-tight">Agregados recientemente</h2>
+    <a href="{% url 'catalogo:catalogo' %}" class="hidden text-sm font-medium text-accent sm:inline-flex sm:items-center sm:gap-1">Ver los {{ stats.0.1 }} {% icono "arrow-right" %}</a>
+  </div>
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {% for m in recientes %}{% include "catalogo/parciales/tarjeta.html" %}{% endfor %}
+  </div>
+</section>
+
+<section class="mx-auto grid max-w-page gap-4 px-4 sm:px-6 md:grid-cols-[1.5fr_1fr]">
+  <a href="{% url 'catalogo:identificar' %}" class="group card flex flex-col justify-between gap-10 p-8 transition-colors hover:bg-raised md:row-span-2 md:p-10">
+    <div>
+      <p class="eyebrow mb-3">Identificador</p>
+      <h2 class="max-w-[18ch] font-display text-2xl font-medium tracking-tight">¿Qué mineral tienes en la mano?</h2>
+      <p class="mt-4 max-w-[44ch] text-muted">Responde con pruebas que puedes hacer en casa: si la uña lo raya, el color de su raya en una porcelana, si lo atrae un imán. El catálogo se ordena por coincidencia.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="chip">La uña lo raya</span><span class="chip">Raya el vidrio</span><span class="chip">Raya negra</span><span class="chip">Atrae un imán</span><span class="chip">Burbujea con ácido</span>
+    </div>
+    <span class="inline-flex items-center gap-1 text-sm font-medium text-accent">Empezar {% icono "arrow-right" "h-4 w-4 transition-transform group-hover:translate-x-0.5" %}</span>
+  </a>
+  <a href="{% url 'catalogo:mapa' %}" class="group card flex items-start gap-4 p-6 transition-colors hover:bg-raised">
+    {% icono "map-pin" "mt-1 h-5 w-5 shrink-0 text-accent" %}
+    <div><h2 class="text-lg font-semibold">Mapa de yacimientos</h2><p class="mt-1 text-sm text-muted">{{ n_lugares }} localidades clásicas; {{ mx }} minerales con yacimientos en México.</p></div>
+  </a>
+  <a href="{% url 'catalogo:elementos' %}" class="group card flex items-start gap-4 p-6 transition-colors hover:bg-raised">
+    <span class="mt-0.5 font-mono text-lg font-medium text-accent">Fe</span>
+    <div><h2 class="text-lg font-semibold">Tabla periódica</h2><p class="mt-1 text-sm text-muted">{{ stats.2.1 }} elementos forman estos minerales. Toca uno para ver en cuáles aparece.</p></div>
+  </a>
+</section>
+
+<section class="mx-auto mt-20 max-w-page px-4 sm:px-6">
+  <p class="eyebrow mb-4">Toda la colección por dureza</p>
+  <div class="flex h-28 items-end gap-[3px] overflow-hidden rounded-lg border hairline bg-surface p-3">
+    {% for m in por_dureza %}<a href="{{ m.get_absolute_url }}" title="{{ m.nombre }} · Mohs {{ m.dureza_texto }}" aria-label="{{ m.nombre }}, dureza {{ m.dureza_texto }}" class="flex-1 rounded-t-[3px] transition-opacity hover:opacity-70" style="height:{% widthratio m.dureza_max 10 100 %}%;background:{{ m.color_hex }}{% if m.metalico %};outline:1px solid rgb(var(--line) / .2){% endif %}"></a>{% endfor %}
+  </div>
+  <p class="mt-2 text-xs text-faint">Cada barra es un mineral, con su color característico. Pasa el cursor para ver su nombre.</p>
+</section>
+{% endif %}
+{% endblock %}
+{% block scripts %}{% if not vacio %}{% load static %}<script type="module" src="{% static 'catalogo/js/cristal.js' %}"></script>{% endif %}{% endblock %}

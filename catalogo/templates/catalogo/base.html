@@ -1,0 +1,101 @@
+{% load static gm %}<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Catálogo de minerales{% endblock %} · Gabinete Mineral</title>
+  <meta name="description" content="{% block descripcion %}Catálogo interactivo de minerales: fichas con propiedades, cristales en 3D, mapa de yacimientos, tabla periódica e identificador por propiedades.{% endblock %}">
+  <meta property="og:title" content="{% block og_titulo %}Gabinete Mineral{% endblock %}">
+  <meta property="og:type" content="website">
+  {% block og_extra %}{% endblock %}
+  <meta name="theme-color" content="#F3EFE7">
+  <link rel="icon" type="image/svg+xml" href="{% static 'catalogo/img/favicon.svg' %}">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem("tema"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="stylesheet" href="{% static 'catalogo/css/app.css' %}">
+  {% block cabeza %}{% endblock %}
+</head>
+{% with ruta=request.resolver_match.url_name %}
+<body>
+<div class="flex min-h-[100dvh] flex-col">
+  <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 btn-primary">Saltar al contenido</a>
+  <header class="sticky top-0 z-40 border-b hairline bg-bg/85 backdrop-blur-md">
+    <div class="mx-auto flex h-16 max-w-page items-center gap-2 px-4 sm:gap-4 sm:px-6">
+      <a href="{% url 'catalogo:inicio' %}" class="flex min-h-[44px] items-center" data-testid="link-inicio">
+        <span class="whitespace-nowrap font-display text-base font-medium sm:text-lg tracking-tight">Gabinete Mineral</span>
+      </a>
+      <nav class="ml-6 hidden items-center gap-1 md:flex" aria-label="Principal">
+        {% include "catalogo/parciales/nav.html" %}
+      </nav>
+      <div class="ml-auto flex items-center sm:gap-1">
+        <a href="{% url 'catalogo:comparar' %}" class="nav-link {% if ruta == 'comparar' %}activo{% endif %}" aria-label="Comparar ({{ n_comparar }})" data-testid="nav-comparar">
+          {% icono "scale" %}<span class="ml-1.5 hidden sm:inline">Comparar</span>
+          <span class="ml-1.5 rounded-full bg-accent px-1.5 font-mono text-xs text-accent-ink {% if not n_comparar %}hidden{% endif %}" data-contador="comparar">{{ n_comparar }}</span>
+        </a>
+        <a href="{% url 'catalogo:favoritos' %}" class="nav-link {% if ruta == 'favoritos' %}activo{% endif %}" aria-label="Favoritos ({{ n_favoritos }})" data-testid="nav-favoritos">
+          {% icono "heart" %}<span class="ml-1.5 font-mono text-xs {% if not n_favoritos %}hidden{% endif %}" data-contador="favoritos">{{ n_favoritos }}</span>
+        </a>
+        <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-md text-muted hover:text-ink" data-tema aria-label="Cambiar tema" data-testid="btn-tema">
+          <span class="tema-claro">{% icono "moon" "h-[18px] w-[18px]" %}</span><span class="tema-oscuro">{% icono "sun" "h-[18px] w-[18px]" %}</span>
+        </button>
+        <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-md md:hidden" data-menu aria-expanded="false" aria-controls="menu-movil" aria-label="Menú" data-testid="btn-menu">
+          {% icono "menu" "h-5 w-5" %}
+        </button>
+      </div>
+    </div>
+    <nav id="menu-movil" class="hidden border-t hairline px-4 py-2 md:hidden" aria-label="Principal móvil">
+      {% include "catalogo/parciales/nav.html" with movil=True %}
+    </nav>
+  </header>
+
+  <main id="contenido" tabindex="-1" class="flex-1 outline-none">
+    {% if messages %}
+      <div class="mx-auto max-w-page px-4 pt-6 sm:px-6">
+        {% for msg in messages %}<p class="card px-4 py-3 text-sm">{{ msg }}</p>{% endfor %}
+      </div>
+    {% endif %}
+    {% block contenido %}{% endblock %}
+  </main>
+
+  <footer class="mt-24 border-t hairline">
+    <div class="mx-auto grid max-w-page gap-8 px-4 py-10 text-sm text-muted sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <p class="font-display text-lg text-ink">Gabinete Mineral</p>
+        <p class="mt-2 max-w-[42ch]">Catálogo de minerales con fichas, modelos 3D de cristales y mapa de yacimientos. Proyecto de portafolio de
+          <a class="text-ink underline decoration-line/30 underline-offset-4 hover:decoration-accent" href="{{ SITIO.autor_url }}">{{ SITIO.autor }}</a>, hecho con Python y Django.</p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <p class="eyebrow mb-1">Explorar</p>
+        <a href="{% url 'catalogo:catalogo' %}" class="hover:text-ink">Catálogo</a>
+        <a href="{% url 'catalogo:identificar' %}" class="hover:text-ink">Identificar</a>
+        <a href="{% url 'catalogo:elementos' %}" class="hover:text-ink">Elementos</a>
+        <a href="{% url 'catalogo:mapa' %}" class="hover:text-ink">Mapa</a>
+      </div>
+      <div class="flex flex-col gap-1">
+        <p class="eyebrow mb-1">Proyecto</p>
+        <a href="{% url 'catalogo:acerca' %}" class="hover:text-ink">Acerca y créditos</a>
+        <a href="{% url 'catalogo:api_minerales' %}" class="hover:text-ink">API en JSON</a>
+        <a href="{{ SITIO.repo_url }}" class="inline-flex items-center gap-1.5 hover:text-ink">{% icono "code-xml" %} Código fuente</a>
+        {% if user.is_superuser %}<a href="{% url 'admin:index' %}" class="inline-flex items-center gap-1.5 hover:text-ink">{% icono "lock" %} Panel de administración</a>{% endif %}
+      </div>
+    </div>
+    <p class="mx-auto max-w-page px-4 pb-8 text-xs text-faint sm:px-6">Fotografías de Wikimedia Commons bajo licencias Creative Commons; autores en cada ficha. Mapa base © Esri y colaboradores de OpenStreetMap.</p>
+  </footer>
+</div>
+{% csrf_token %}
+<script src="{% static 'catalogo/js/app.js' %}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+{% endwith %}
+</html>

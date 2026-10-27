@@ -1,0 +1,26 @@
+{% extends "catalogo/base.html" %}{% load gm %}
+{% block titulo %}Acerca y créditos{% endblock %}
+{% block contenido %}
+<div class="mx-auto grid max-w-page gap-12 px-4 pt-10 sm:px-6 lg:grid-cols-[1fr_1.2fr]">
+  <div>
+    <p class="eyebrow mb-2">Acerca</p>
+    <h1 class="font-display text-xl font-medium tracking-tight">Sobre el proyecto</h1>
+    <div class="mt-4 space-y-4 text-muted">
+      <p>Gabinete Mineral empezó como una app de Streamlit y creció hasta convertirse en una aplicación web con Django: el servidor en Python genera cada página, los datos viven en una base de datos SQL y las fotos se guardan junto con sus créditos.</p>
+      <p>El catálogo se edita desde un panel de administración privado; solo la cuenta del propietario puede entrar, y cada alta, cambio o baja queda registrada en el historial.</p>
+    </div>
+    <a href="{{ SITIO.repo_url }}" class="btn-ghost mt-6">{% icono "code-xml" %} Ver el código en GitHub</a>
+    <h2 class="mb-3 mt-12 text-lg font-semibold">Tecnologías</h2>
+    <dl class="divide-y divide-[rgb(var(--line)/0.12)] border-y hairline text-sm">
+      {% for k, v in tecnologias %}<div class="grid grid-cols-[140px_1fr] gap-4 py-2.5"><dt class="font-medium">{{ k }}</dt><dd class="text-muted">{{ v }}</dd></div>{% endfor %}
+    </dl>
+  </div>
+  <div>
+    <h2 class="mb-3 text-lg font-semibold">Créditos de las fotografías</h2>
+    <ul class="divide-y divide-[rgb(var(--line)/0.12)] border-y hairline text-sm">
+      {% for f in fotos %}<li class="flex items-center justify-between gap-4 py-2.5"><a href="{{ f.mineral.get_absolute_url }}" class="font-medium hover:text-accent">{{ f.mineral.nombre }}</a>
+        <span class="text-right text-muted">{{ f.autor|default:"Sin autor" }}{% if f.licencia %} · {% if f.licencia_url %}<a href="{{ f.licencia_url }}" class="underline underline-offset-2 hover:text-ink">{{ f.licencia }}</a>{% else %}{{ f.licencia }}{% endif %}{% endif %}</span></li>{% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

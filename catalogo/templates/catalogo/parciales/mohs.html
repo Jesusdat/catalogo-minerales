@@ -1,0 +1,6 @@
+{% load gm %}<div class="w-full" aria-label="Dureza {{ m.dureza_texto }} en la escala de Mohs">
+  <div class="relative w-full rounded-full bg-raised {% if compacta %}h-1.5{% else %}h-2.5{% endif %}">
+    <div class="absolute inset-y-0 rounded-full bg-accent" style="left:{{ m.dureza_min|pct_mohs|stringformat:'s' }}%;width:max({{ m.dureza_max|pct_mohs|stringformat:'s' }}% - {{ m.dureza_min|pct_mohs|stringformat:'s' }}%, {% if compacta %}6px{% else %}10px{% endif %})"></div>
+  </div>
+  {% if not compacta %}<div class="mt-1.5 flex justify-between font-mono text-xs text-faint"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>{% endif %}
+</div>
